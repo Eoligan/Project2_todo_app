@@ -4,7 +4,7 @@ import LandingView from "@/views/LandingView.vue"
 </script>
 
 <template>
-  <LandingView></LandingView>
+  <RouterView> </RouterView>
 </template>
 
 <style scoped></style>

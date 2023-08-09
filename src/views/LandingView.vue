@@ -1,6 +1,6 @@
 <script setup>
-import LoginBox from '@/components/LoginBox.vue';
-
+import LoginBox from "@/components/LoginBox.vue"
+import RegisterBox from "../components/RegisterBox.vue"
 </script>
 
 <template>
@@ -11,8 +11,8 @@ import LoginBox from '@/components/LoginBox.vue';
       There's a lot <br />
       To-Do
     </h1>
-  </header> 
+  </header>
   <main>
-    <LoginBox></LoginBox>
+    <RouterView> </RouterView>
   </main>
 </template>
