@@ -1,6 +1,4 @@
 <script setup>
-import LoginBox from "@/components/LoginBox.vue"
-import RegisterBox from "../components/RegisterBox.vue"
 </script>
 
 <template>

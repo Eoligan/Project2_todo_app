@@ -32,7 +32,7 @@ const password = ref("")
         />
 
         <button
-          @click="userStore.handleLogin(email, password)"
+          @click.prevent="userStore.handleLogin(email, password)"
           class="mt-3 rounded-md bg-brand font-bold text-white"
         >
           Login

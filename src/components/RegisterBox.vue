@@ -43,7 +43,7 @@ const password = ref("")
         />
 
         <button
-          @click="userStore.createNewUser(email, password)"
+          @click.prevent="userStore.createNewUser(email, password, name)"
           class="mt-3 rounded-md bg-brand font-bold text-white"
         >
           Register
