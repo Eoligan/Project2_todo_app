@@ -10,7 +10,10 @@ const password = ref("")
 
 <template>
   <section class="grid place-items-center">
-    <form class="rounded-md bg-slate-300 px-8 pb-8 pt-4">
+    <form
+      @submit.prevent="userStore.handleLogin(email, password)"
+      class="rounded-md bg-slate-300 px-8 pb-8 pt-4"
+    >
       <h2 class="m-4 text-center text-xl font-bold">Login</h2>
       <div class="flex flex-col">
         <input
@@ -32,7 +35,7 @@ const password = ref("")
         />
 
         <button
-          @click.prevent="userStore.handleLogin(email, password)"
+          type="submit"
           class="mt-3 rounded-md bg-brand font-bold text-white"
         >
           Login

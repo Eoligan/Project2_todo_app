@@ -17,9 +17,12 @@ export const useUserStore = defineStore("userStore", () => {
         },
       },
     })
-    if (error) console.log("Error: ", error)
-    else {
+    if (error) {
+      console.log("Error: ", error)
+      throw error
+    } else {
       user.value = data
+      router.push("dashboard")
     }
   }
 
@@ -39,7 +42,7 @@ export const useUserStore = defineStore("userStore", () => {
         password: password,
       })
       if (error) {
-        // console.log("Error: ", error)
+        console.log("Error: ", error)
         throw error
       } else {
         user.value = data

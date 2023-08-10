@@ -13,7 +13,10 @@ const password = ref("")
 
 <template>
   <section class="grid place-items-center">
-    <form class="rounded-md bg-slate-300 px-8 pb-8 pt-4">
+    <form
+      @submit.prevent="userStore.createNewUser(email, password, name)"
+      class="rounded-md bg-slate-300 px-8 pb-8 pt-4"
+    >
       <h2 class="m-4 text-center text-xl font-bold">Register</h2>
       <div class="flex flex-col">
         <input
@@ -42,10 +45,7 @@ const password = ref("")
           autocomplete="new-password"
         />
 
-        <button
-          @click.prevent="userStore.createNewUser(email, password, name)"
-          class="mt-3 rounded-md bg-brand font-bold text-white"
-        >
+        <button class="mt-3 rounded-md bg-brand font-bold text-white">
           Register
         </button>
         <RouterLink to="login" class="mt-3 text-xs text-amber-600">

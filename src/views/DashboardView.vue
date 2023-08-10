@@ -1,15 +1,19 @@
 <script setup async>
 import { useUserStore } from "../stores/user"
+import { onMounted, ref } from "vue"
 
 const userStore = useUserStore()
-let userName = await userStore.getName()
+const userName = ref()
 
-console.log("User data in dashboard: ", userName)
+onMounted(async () => {
+  userName.value = await userStore.getName()
+  // console.log("User data in dashboard: ", userName.value)
+})
 </script>
 
 <template>
+  <p class="bg-red-500">caracolaA!!</p>
   <Suspense>
-    <p class="bg-red-500">caracolaA!!</p>
     <p>User: {{ userName }}</p>
   </Suspense>
 </template>
