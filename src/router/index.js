@@ -35,20 +35,22 @@ const router = createRouter({
   ],
 })
 
-// router.beforeEach((to, from, next) => {
-//   //get the authenticated user
-//   const authUser = supabase.auth.getSession()
-//   console.log(authUser);
-//   //check sensitive routes
-//   if (to.meta.requiresAuth) {
-//     if (!authUser) {
-//       next("/login")
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach(async (to, from, next) => {
+  //get the authenticated user
+  const authUser = await supabase.auth.getSession()
+  console.log("authe user:", authUser)
+
+  // check if the route requires authentication
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    // if the user is not authenticated, redirect to the login page
+    if (!authUser) {
+      next("/login")
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 
 export default router

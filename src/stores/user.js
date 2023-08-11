@@ -31,7 +31,7 @@ export const useUserStore = defineStore("userStore", () => {
       data: { user },
     } = await supabase.auth.getUser()
     let nameMetadata = user.user_metadata.name
-    console.log("in user: ", nameMetadata)
+    // console.log("in user: ", nameMetadata)
     return nameMetadata
   }
 
