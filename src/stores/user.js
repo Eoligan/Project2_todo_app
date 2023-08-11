@@ -56,5 +56,15 @@ export const useUserStore = defineStore("userStore", () => {
     }
   }
 
-  return { user, createNewUser, handleLogin, getName }
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      console.log("Error: ", error)
+      throw error
+    } else {
+      router.push("/login")
+    }
+  }
+
+  return { user, createNewUser, handleLogin, getName, handleSignOut }
 })

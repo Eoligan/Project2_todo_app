@@ -7,12 +7,15 @@ const userName = ref()
 
 onMounted(async () => {
   userName.value = await userStore.getName()
-  // console.log("User data in dashboard: ", userName.value)
 })
 </script>
 
 <template>
   <p class="bg-red-500">caracolaA!!</p>
+  <button
+    class="rounded border bg-blue-500"
+    @click="userStore.handleSignOut"
+  >Sign Out</button>
   <Suspense>
     <p>User: {{ userName }}</p>
   </Suspense>
