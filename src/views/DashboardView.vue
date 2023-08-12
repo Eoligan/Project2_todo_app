@@ -36,8 +36,20 @@ const addTask = async () => {
   <h1 class="text-7xl">Task</h1>
 
   <ul>
-    <li v-for="task in taskStore.tasks">
-      {{ task.title }} {{ task.is_completed }}
+    <li
+      @click="taskStore.completedTask(task.id, task.is_completed)"
+      v-for="task in taskStore.tasks"
+    >
+      <p v-if="task.is_completed" class="bg-gray-100 text-slate-400 line-through">
+        {{ task.title }} {{ task.is_completed }}
+      </p>
+      <p v-else class="bg-gray-100">{{ task.title }} {{ task.is_completed }}</p>
+      <!-- <button
+        @click="taskStore.editTask(task.id, title)"
+        class="rounded bg-green-700 text-white"
+      >
+        edit
+      </button> -->
       <button
         @click="taskStore.deleteTask(task.id)"
         class="rounded bg-red-700 text-white"
