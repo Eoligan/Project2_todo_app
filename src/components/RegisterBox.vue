@@ -54,17 +54,4 @@ const password = ref("")
       </div>
     </form>
   </section>
-  <!-- <input placeholder="email..." v-model="email" />
-  <input placeholder="password..." v-model="password" />
-  <button @click="userStore.createNewUser(email, password)">
-    Create new user
-  </button> -->
-
-  <!-- <br /><br />
-  <button @click="taskStore.fetchTasks">fetch</button>
-  <ul>
-    <li v-for="task in taskStore.tasks">
-      {{ task.title }}
-    </li>
-  </ul> -->
 </template>
