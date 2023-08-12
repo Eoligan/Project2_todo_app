@@ -38,12 +38,11 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   //get the authenticated user
   const authUser = await supabase.auth.getSession()
-  console.log("authe user:", authUser)
 
   // check if the route requires authentication
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     // if the user is not authenticated, redirect to the login page
-    if (!authUser) {
+    if (authUser.data.session === null || authUser.data.session === undefined) {
       next("/login")
     } else {
       next()
