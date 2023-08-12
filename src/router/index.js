@@ -12,17 +12,20 @@ const router = createRouter({
       path: "/",
       name: "landing",
       component: LandingView,
+      requiresGuest: true,
       redirect: "/login",
       children: [
         {
           path: "login",
           name: "login",
           component: LoginBox,
+          requiresGuest: true,
         },
         {
           path: "register",
           name: "register",
           component: RegisterBox,
+          requiresGuest: true,
         },
       ],
     },
@@ -36,20 +39,24 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  //get the authenticated user
   const authUser = await supabase.auth.getSession()
-
+  const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
+  const requiresGuest = to.matched.some((x) => x.meta.requiresGuest)
   // check if the route requires authentication
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
+  if (requiresAuth) {
     // if the user is not authenticated, redirect to the login page
-    if (authUser.data.session === null || authUser.data.session === undefined) {
+    if (!authUser.data.session) {
       next("/login")
-    } else {
-      next()
+    } else if (authUser.data.session) {
+      next("/dashboard")
     }
-  } else {
-    next()
-  }
+  } else if (requiresGuest) {
+    if (!authUser.data.session) {
+      next("/login")
+    } else if (authUser.data.session) {
+      next("/dashboard")
+    }
+  } else next()
 })
 
 export default router
