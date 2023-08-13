@@ -21,11 +21,18 @@ onMounted(async () => {
   }
 })
 
+const errorMessage = (errorStr) => {
+  if (errorStr === "add") alert("The task must longer than 3 characters")
+}
+
 const addTask = async () => {
-  const added = await taskStore.addTask(userId, taskTitle.value)
-  if (added) {
-    taskTitle.value = ""
+  const title = taskTitle.value
+  taskTitle.value = ""
+  if (title.length <= 3) {
+    errorMessage("add")
+    return
   }
+  await taskStore.addTask(userId, title)
 }
 
 const sortedTasks = computed(() => {

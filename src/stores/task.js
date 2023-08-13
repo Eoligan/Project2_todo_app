@@ -11,32 +11,38 @@ export const useTaskStore = defineStore("taskStore", () => {
     if (error) console.log("Error: ", error)
     else {
       tasks.value = data
-      // console.log("tasks: ", tasks.value)
     }
   }
 
   const addTask = async (user_id, title) => {
+    const newTask = { user_id: user_id, title: title, is_completed: false }
+    tasks.value.push(newTask)
+
     const { data, error } = await supabase
       .from("tasks")
-      .insert({ user_id: user_id, title: title, is_completed: false })
+      .insert(newTask)
       .select()
 
-    if (error) console.log("Error: ", error)
-    else {
-      tasks.value.push(data[0])
-
-      return true
+    if (error) {
+      console.log("Error: ", error)
+      tasks.value.pop()
+      return false
     }
+
+    // Replace the added task with the response from the database
+    tasks.value.splice(tasks.value.indexOf(newTask), 1, data[0])
+    return true
   }
 
   const deleteTask = async (id) => {
+    const filterValue = tasks.value.filter((task) => task.id !== id)
+    tasks.value = filterValue
+
     const { error } = await supabase.from("tasks").delete().eq("id", id)
 
-    if (error) console.log("Error: ", error)
-    else {
-      tasks.value = tasks.value.filter((task) => task.id !== id)
-
-      return true
+    if (error) {
+      console.log("Error: ", error)
+      tasks.value.push(filterValue)
     }
   }
 
@@ -59,18 +65,20 @@ export const useTaskStore = defineStore("taskStore", () => {
   }
 
   const completedTask = async (id, completed) => {
+    const index = tasks.value.findIndex((task) => task.id === id)
+    if (index !== -1) {
+      tasks.value[index].is_completed = !tasks.value[index].is_completed
+    }
+
     const { data, error } = await supabase
       .from("tasks")
       .update({ is_completed: !completed })
       .eq("id", id)
       .select()
 
-    if (error) console.log("Error: ", error)
-    else {
-      const index = tasks.value.findIndex((task) => task.id === id)
-      if (index !== -1) {
-        tasks.value[index].is_completed = !tasks.value[index].is_completed
-      }
+    if (error) {
+      console.log("Error: ", error)
+      tasks.value[index].is_completed = !tasks.value[index].is_completed
     }
   }
 
