@@ -2,6 +2,7 @@
 import { useUserStore } from "@/stores/user"
 import { useTaskStore } from "@/stores/task"
 import { onMounted, ref, computed, nextTick } from "vue"
+import UserComponent from "@/components/UserComponent.vue"
 
 const userStore = useUserStore()
 const taskStore = useTaskStore()
@@ -59,15 +60,9 @@ const toggleEditing = (task) => {
 </script>
 
 <template>
-  <p class="bg-red-500">caracolaA!!</p>
   <Suspense>
-    <p>User: {{ userName }}</p>
+    <UserComponent></UserComponent>
   </Suspense>
-  <button class="rounded border bg-blue-500" @click="userStore.handleSignOut">
-    Sign Out
-  </button>
-
-  <br /><br />
 
   <h1 class="text-7xl">Task</h1>
 
@@ -84,7 +79,7 @@ const toggleEditing = (task) => {
           'bg-gray-400': !task.is_completed,
         }"
       >
-        {{ task.title }} {{ task.is_completed }}
+        {{ task.title }}
       </p>
       <button
         v-if="editingTask !== task"
