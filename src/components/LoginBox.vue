@@ -12,13 +12,17 @@ const password = ref("")
   <section class="grid place-items-center">
     <form
       @submit.prevent="userStore.handleLogin(email, password)"
-      class="rounded-md shadow bg-slate-50 w-72 h-full sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10 px-8 pb-8 pt-4"
+      class="h-full w-72 rounded-md bg-slate-50 px-8 pb-8 pt-4 shadow sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10"
     >
-      <h2 class="mb-8 mt-2 text-center p-4 text-3xl font-bold">Login</h2>
-      <div class="flex flex-col">
+      <h2
+        class="mt-2 px-4 text-center text-3xl font-bold tracking-widest sm:mb-8"
+      >
+        Login
+      </h2>
+      <div class="flex flex-col gap-6">
         <input
           placeholder="Email"
-          class="my-2 border-b-2 pl-4 py-4 placeholder:-translate-y-1.5 placeholder:text-slate-400 placeholder:font-bold  border-slate-400 bg-slate-50 pb-1 "
+          class="border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded text-aver hover:border-none hover:pb-[18px] hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-none focus:pb-[18px] focus:outline-none focus:ring-2 focus:ring-brand"
           id="email"
           name="email"
           type="text"
@@ -26,7 +30,7 @@ const password = ref("")
         />
         <input
           placeholder="Password"
-          class="my-2 border-b-2 pl-4 py-4 placeholder:-translate-y-1.5  placeholder:text-slate-400  placeholder:font-bold border-slate-400 bg-slate-50 pb-1"
+          class="border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded text-aver hover:border-none hover:pb-[18px] hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-none focus:pb-[18px] focus:outline-none focus:ring-2 focus:ring-brand"
           id="pass"
           name="pass"
           type="password"
@@ -36,11 +40,14 @@ const password = ref("")
 
         <button
           type="submit"
-          class="mt-3 rounded-md bg-brand font-bold text-white"
+          class="mt-6 w-64 self-center rounded-md bg-brand p-4 text-white"
         >
           Login
         </button>
-        <RouterLink to="register" class="mt-3 text-xs text-amber-600">
+        <RouterLink
+          to="register"
+          class="self-center text-base text-brand hover:text-brand-600 hover:underline hover:decoration-2 hover:underline-offset-[5px]"
+        >
           Don't have an account? Sign Up!
         </RouterLink>
       </div>

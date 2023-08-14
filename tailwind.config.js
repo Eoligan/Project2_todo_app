@@ -2,6 +2,16 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      averia: {
+        DEFAULT: "averia_serif_libreregular",
+        bold_italic: "averia_serif_librebold_italic",
+        italic: "averia_serif_libreitalic",
+        light: "averia_serif_librelight",
+        light_italic: "averia_serif_libreLtIt",
+        bold: "averia_serif_librebold",
+      },
+    },
     extend: {
       colors: {
         brand: {
