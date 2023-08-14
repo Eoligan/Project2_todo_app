@@ -4,7 +4,7 @@ import TasksLists from "../components/TasksLists.vue"
 </script>
 
 <template>
-  <header class="mt-8 border-b border-secondary pb-8">
+  <header class="pt-8 border-b bg-slate-50 border-secondary shadow-md  pb-8">
     <nav class="mx-auto flex max-w-6xl items-center justify-between">
       Logo title
       <Suspense>

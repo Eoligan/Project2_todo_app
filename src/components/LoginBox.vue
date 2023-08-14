@@ -12,21 +12,21 @@ const password = ref("")
   <section class="grid place-items-center">
     <form
       @submit.prevent="userStore.handleLogin(email, password)"
-      class="rounded-md bg-slate-300 px-8 pb-8 pt-4"
+      class="rounded-md shadow bg-slate-50 w-72 h-full sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10 px-8 pb-8 pt-4"
     >
-      <h2 class="m-4 text-center text-xl font-bold">Login</h2>
+      <h2 class="mb-8 mt-2 text-center p-4 text-3xl font-bold">Login</h2>
       <div class="flex flex-col">
         <input
-          placeholder=" Email"
-          class="my-2 border-b-2 border-slate-800 bg-slate-300 pb-1 placeholder:text-slate-800"
+          placeholder="Email"
+          class="my-2 border-b-2 pl-4 py-4 placeholder:-translate-y-1.5 placeholder:text-slate-400 placeholder:font-bold  border-slate-400 bg-slate-50 pb-1 "
           id="email"
           name="email"
           type="text"
           v-model="email"
         />
         <input
-          placeholder=" Password"
-          class="my-2 border-b-2 border-slate-800 bg-slate-300 pb-1 placeholder:text-slate-800"
+          placeholder="Password"
+          class="my-2 border-b-2 pl-4 py-4 placeholder:-translate-y-1.5  placeholder:text-slate-400  placeholder:font-bold border-slate-400 bg-slate-50 pb-1"
           id="pass"
           name="pass"
           type="password"
