@@ -1,10 +1,11 @@
 <script setup>
 import { useTaskStore } from "@/stores/task"
 import { computed, onMounted, nextTick, ref } from "vue"
-import { Icon } from "@iconify/vue";
+import { Icon } from "@iconify/vue"
 
 const taskStore = useTaskStore()
 const editingTask = ref(null)
+let prevTask = ref(null)
 
 onMounted(async () => {
   try {
@@ -21,10 +22,21 @@ const sortedTasks = computed(() => {
   return tasks
 })
 
-const toggleEditing = (task) => {
+const toggleEditing = (task, cancel) => {
+  console.log(cancel)
+  if (!cancel) {
+    prevTask = task
+  }
+
   if (editingTask.value === task) {
+    if (!cancel) {
+      taskStore.editTask(task.id, task.title)
+    } else {
+      console.log("prevtask", prevTask.title)
+      console.log("currenttask", task.title)
+      taskStore.editTask(task.id, prevTask.title)
+    }
     editingTask.value = null
-    taskStore.editTask(task.id, task.title)
   } else {
     editingTask.value = task
 
@@ -38,41 +50,72 @@ const toggleEditing = (task) => {
 </script>
 
 <template>
-  <div class="flex justify-center flex-wrap gap-4">
-    <li class="flex items-center justify-between w-3/5" v-for="task in sortedTasks" :key="task.id">
-      <div  class="flex items-center justify-between w-full" v-if="editingTask === task">
-        <input class="flex-1 p-3 rounded" id="editInput" v-model="task.title" type="text" @keydown.enter="toggleEditing(task)" @keydown.esc="toggleEditing(task)"/>
+  <div class="flex flex-wrap justify-center gap-4">
+    <li
+      class="flex w-3/5 items-center justify-between"
+      v-for="task in sortedTasks"
+      :key="task.id"
+    >
+      <div
+        class="flex w-full items-center justify-between"
+        v-if="editingTask === task"
+      >
+        <input
+          class="flex-1 rounded p-3"
+          id="editInput"
+          v-model="task.title"
+          type="text"
+          @keydown.enter="toggleEditing(task, false)"
+          @keydown.esc="toggleEditing(task, false)"
+        />
       </div>
-      <p class="p-3 rounded flex-1 cursor-pointer hover:ring-2"
+      <p
+        class="flex-1 cursor-pointer break-all rounded p-3 hover:ring-2"
         v-else
         @click="taskStore.completedTask(task.id, task.is_completed)"
         :class="{
-          'bg-slate-50 line-through text-slate-400/80 shadow active:bg-slate-200 hover:ring-slate-200': task.is_completed,
-          'bg-brand-100/50 shadow hover:ring-brand-200 active:bg-brand-200': !task.is_completed,
+          'bg-slate-50 text-slate-400/80 line-through shadow hover:ring-slate-200 active:bg-slate-200':
+            task.is_completed,
+          'bg-brand-100/50 shadow hover:ring-brand-200 active:bg-brand-200':
+            !task.is_completed,
         }"
       >
         {{ task.title }}
       </p>
-       
+
       <button
         v-if="editingTask !== task"
-        @click="toggleEditing(task)"
-        class="rounded mx-3 p-3 shadow bg-slate-50 hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
+        @click="toggleEditing(task, false)"
+        class="mx-3 rounded bg-slate-50 p-3 shadow hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
       >
-      <Icon icon="material-symbols:edit" class="w-6 h-6 text-yellow-400" />
+        <Icon icon="material-symbols:edit" class="h-6 w-6 text-yellow-400" />
       </button>
       <button
         v-else
-        @click="toggleEditing(task)"
-        class="rounded mx-3 p-3 shadow bg-green-700 hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
+        @click="toggleEditing(task, false)"
+        class="mx-3 rounded bg-green-700 p-3 shadow hover:bg-green-600 hover:ring-2 hover:ring-slate-200 active:bg-green-500"
       >
-      <Icon class=" text-white w-8 h-8 -m-1" icon="material-symbols:done-rounded" />
+        <Icon
+          class="-m-1 h-8 w-8 text-white"
+          icon="material-symbols:done-rounded"
+        />
       </button>
       <button
+        v-if="editingTask !== task"
         @click="taskStore.deleteTask(task.id)"
-        class="rounded shadow bg-slate-50 p-3 hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
+        class="rounded bg-slate-50 p-3 shadow hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
       >
-      <Icon class="w-6 h-6 text-red-700" icon="material-symbols:delete" />
+        <Icon class="h-6 w-6 text-red-700" icon="material-symbols:delete" />
+      </button>
+      <button
+        v-else
+        @click="toggleEditing(task, true)"
+        class="rounded bg-red-700 p-3 shadow hover:bg-red-600 hover:ring-2 hover:ring-slate-200 active:bg-red-500"
+      >
+        <Icon
+          class="-m-1 h-8 w-8 text-white"
+          icon="material-symbols:close-rounded"
+        />
       </button>
     </li>
   </div>
