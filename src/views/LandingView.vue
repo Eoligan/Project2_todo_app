@@ -3,7 +3,7 @@
 <template>
   <header class="m-16 flex flex-col gap-4">
     <h1
-      class="bg-gradient-to-r from-amber-600 to-amber-900 bg-clip-text text-center font-averia text-6xl font-bold uppercase tracking-widest text-transparent"
+      class="bg-gradient-to-r from-amber-600 to-amber-900 bg-clip-text text-center font-averia font-bold text-6xl uppercase tracking-widest text-transparent"
     >
       There's a lot <br />
       To-Do

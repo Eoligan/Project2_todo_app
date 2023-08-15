@@ -20,7 +20,8 @@ const handleSignOut = () => {
 
     <div class="group">
       <button
-        class="flex items-center rounded-xl border bg-secondary py-1 pl-3 text-sm font-bold uppercase text-neutral-200 transition-colors duration-200 ease-in hover:bg-secondary-200 hover:text-neutral-100"
+        class="flex items-center rounded-xl border bg-secondary py-1 pl-3 font-averia-bold text-sm 
+         uppercase text-neutral-200 transition-colors duration-200 ease-in hover:bg-secondary-200 hover:text-neutral-100"
         @click="handleSignOut"
       >
         Sign Out

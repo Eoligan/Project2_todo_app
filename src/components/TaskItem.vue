@@ -2,6 +2,7 @@
 import { useTaskStore } from "@/stores/task"
 import { computed, onMounted, nextTick, ref } from "vue"
 import { Icon } from "@iconify/vue"
+import errorMessage from "../lib/errors"
 
 const taskStore = useTaskStore()
 const editingTask = ref(null)
@@ -23,19 +24,23 @@ const sortedTasks = computed(() => {
 })
 
 const toggleEditing = (task, cancel) => {
-  console.log(cancel)
+  let previousTitle = ""
   if (!cancel) {
-    prevTask = task
+    prevTask = { ...task }
+    previousTitle = task.title
   }
-
   if (editingTask.value === task) {
-    if (!cancel) {
-      taskStore.editTask(task.id, task.title)
-    } else {
-      console.log("prevtask", prevTask.title)
-      console.log("currenttask", task.title)
-      taskStore.editTask(task.id, prevTask.title)
+    const titleToEdit = cancel ? prevTask.title : task.title
+
+    if (titleToEdit.length <= 3) {
+      errorMessage("edit")
+      editingTask.value = null
+      console.log(prevTask)
+      taskStore.editTask(task.id, previousTitle)
+
+      return
     }
+    taskStore.editTask(task.id, titleToEdit)
     editingTask.value = null
   } else {
     editingTask.value = task
@@ -66,7 +71,7 @@ const toggleEditing = (task, cancel) => {
           v-model="task.title"
           type="text"
           @keydown.enter="toggleEditing(task, false)"
-          @keydown.esc="toggleEditing(task, false)"
+          @keydown.esc="toggleEditing(task, true)"
         />
       </div>
       <p
