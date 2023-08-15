@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import LandingView from "@/views/LandingView.vue"
-import LoginBox from "@/components/LoginBox.vue"
-import RegisterBox from "@/components/RegisterBox.vue"
+import LoginView from "@/views/LoginView.vue"
+import RegisterView from "@/views/RegisterView.vue"
 import DashboardView from "@/views/DashboardView.vue"
 import supabase from "@/lib/supabase"
 
@@ -17,13 +17,13 @@ const router = createRouter({
         {
           path: "login",
           name: "login",
-          component: LoginBox,
+          component: LoginView,
           meta: { requiresGuest: true },
         },
         {
           path: "register",
           name: "register",
-          component: RegisterBox,
+          component: RegisterView,
           meta: { requiresGuest: true },
         },
       ],
