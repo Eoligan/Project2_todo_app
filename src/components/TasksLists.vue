@@ -26,11 +26,6 @@ const addTask = async () => {
 
 <template>
   <h1 class="text-7xl">Task</h1>
-
-  <ul>
-    <TaskItem></TaskItem>
-  </ul>
-
   <input
     id="addTask"
     v-model="taskTitle"
@@ -38,4 +33,9 @@ const addTask = async () => {
     type="text"
   />
   <button class="rounded border bg-blue-500" @click="addTask">Add task</button>
+
+  <ul>
+    <TaskItem></TaskItem>
+  </ul>
+
 </template>

@@ -16,7 +16,7 @@ module.exports = {
       colors: {
         brand: {
           DEFAULT: "hsl(36.1,66%,48.4%, <alpha-value>)", //#cd8c2a
-          100: "hsl(36.1,65.8%,63.3%, <alpha-value)",
+          100: "hsl(36.1,65.8%,63.3%, <alpha-value>)",
           200: "hsl(36,66%,58.4%, <alpha-value>)",
           300: "hsl(35.9,66.2%,53.5%,<alpha-value>)",
           500: "hsl(36.2,65.8%,43.5%, <alpha-value>)",
