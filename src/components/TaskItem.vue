@@ -39,7 +39,7 @@ const toggleEditing = (task) => {
 <template>
   <li v-for="task in sortedTasks" :key="task.id">
     <div v-if="editingTask === task">
-      <input id="editInput" v-model="task.title" type="text" />
+      <input id="editInput" v-model="task.title" type="text" @keydown.enter="toggleEditing(task)"/>
     </div>
     <p
       v-else
