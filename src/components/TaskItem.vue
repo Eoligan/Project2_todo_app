@@ -52,7 +52,7 @@ const editTask = (id, title) => {
 <template>
   <div class="flex flex-wrap justify-center gap-4">
     <li
-      class="flex w-3/5 items-center justify-between"
+      class="group flex w-3/5 items-center justify-between"
       v-for="task in sortedTasks"
       :key="task.id"
     >
@@ -69,8 +69,8 @@ const editTask = (id, title) => {
           @keydown.esc="toggleEditButton(task)"
         />
       </div>
-      <p
-        class="flex-1 cursor-pointer break-all rounded p-3 hover:ring-2"
+
+      <div
         v-else
         @click="taskStore.completedTask(task.id, task.is_completed)"
         :class="{
@@ -79,10 +79,18 @@ const editTask = (id, title) => {
           'bg-brand-100/50 shadow hover:ring-brand-200 active:bg-brand-200':
             !task.is_completed,
         }"
+        class="group flex flex-1 cursor-pointer break-all rounded hover:ring-2"
       >
-        {{ task.title }}
-      </p>
-
+        <input
+          type="checkbox"
+          name="is_completed"
+          class="m-3 mx-2 h-6 w-6 rounded-sm border-brand text-brand group-hover:bg-slate-100 checked:group-hover:bg-current"
+          :checked="task.is_completed"
+        />
+        <label class="-z-1 flex-1 py-3">
+          {{ task.title }}
+        </label>
+      </div>
       <button
         v-if="editMode !== task"
         @click="toggleEditButton(task)"

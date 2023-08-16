@@ -69,9 +69,8 @@ export const useTaskStore = defineStore("taskStore", () => {
 
   const completedTask = async (id, completed) => {
     const index = tasks.value.findIndex((task) => task.id === id)
-    if (index !== -1) {
-      tasks.value[index].is_completed = !tasks.value[index].is_completed
-    }
+
+    tasks.value[index].is_completed = !tasks.value[index].is_completed
 
     const { data, error } = await supabase
       .from("tasks")
