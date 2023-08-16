@@ -35,33 +35,36 @@ export const useTaskStore = defineStore("taskStore", () => {
   }
 
   const deleteTask = async (id) => {
-    const filterValue = tasks.value.filter((task) => task.id !== id)
-    tasks.value = filterValue
+    const removedIndex = tasks.value.findIndex((task) => task.id === id)
+    const removedTask = tasks.value.splice(removedIndex, 1)[0]
 
     const { error } = await supabase.from("tasks").delete().eq("id", id)
 
     if (error) {
       console.log("Error: ", error)
-      tasks.value.push(filterValue)
+      tasks.value.splice(removedIndex, 0, removedTask)
     }
   }
 
   const editTask = async (id, title) => {
-    const { data, error } = await supabase
+    const index = tasks.value.findIndex((task) => task.id === id)
+    let previousTitle = ""
+
+    previousTitle = tasks.value[index].title
+    tasks.value[index].title = title
+
+    const { error } = await supabase
       .from("tasks")
       .update({ title: title })
       .eq("id", id)
-      .select()
 
-    if (error) console.log("Error: ", error)
-    else {
-      const index = tasks.value.findIndex((task) => task.id === id)
-      if (index !== -1) {
-        tasks.value[index].title = title
-      }
-
-      return true
+    if (error) {
+      console.log("Error: ", error)
+      tasks.value[index].title = previousTitle
+      return false
     }
+
+    return true
   }
 
   const completedTask = async (id, completed) => {

@@ -10,10 +10,6 @@ const userStore = useUserStore()
 let taskTitle = ref("")
 const userId = userStore.user.user.id
 
-// const errorMessage = (errorStr) => {
-//   if (errorStr === "add") alert("The task must longer than 3 characters")
-// }
-
 const addTask = async () => {
   const title = taskTitle.value
   taskTitle.value = ""

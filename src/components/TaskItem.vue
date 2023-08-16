@@ -5,13 +5,13 @@ import { Icon } from "@iconify/vue"
 import errorMessage from "../lib/errors"
 
 const taskStore = useTaskStore()
-const editingTask = ref(null)
-let prevTask = ref(null)
+const editMode = ref(null)
+let taskTitle = ref("")
 
 onMounted(async () => {
   try {
     await taskStore.fetchTasks()
-    editingTask.value = Array(taskStore.tasks.length).fill(false)
+    editMode.value = Array(taskStore.tasks.length).fill(false)
   } catch (error) {
     console.error(error)
   }
@@ -23,27 +23,13 @@ const sortedTasks = computed(() => {
   return tasks
 })
 
-const toggleEditing = (task, cancel) => {
-  let previousTitle = ""
-  if (!cancel) {
-    prevTask = { ...task }
-    previousTitle = task.title
-  }
-  if (editingTask.value === task) {
-    const titleToEdit = cancel ? prevTask.title : task.title
+const toggleEditButton = (task) => {
+  taskTitle = task.title
 
-    if (titleToEdit.length <= 3) {
-      errorMessage("edit")
-      editingTask.value = null
-      console.log(prevTask)
-      taskStore.editTask(task.id, previousTitle)
-
-      return
-    }
-    taskStore.editTask(task.id, titleToEdit)
-    editingTask.value = null
+  if (editMode.value === task) {
+    editMode.value = null
   } else {
-    editingTask.value = task
+    editMode.value = task
 
     nextTick(() => {
       const input = document.getElementById("editInput")
@@ -51,6 +37,15 @@ const toggleEditing = (task, cancel) => {
       input.select()
     })
   }
+}
+
+const editTask = (id, title) => {
+  if (title.length < 3) {
+    errorMessage("edit")
+  } else {
+    taskStore.editTask(id, title)
+  }
+  editMode.value = null
 }
 </script>
 
@@ -63,15 +58,15 @@ const toggleEditing = (task, cancel) => {
     >
       <div
         class="flex w-full items-center justify-between"
-        v-if="editingTask === task"
+        v-if="editMode === task"
       >
         <input
           class="flex-1 rounded p-3"
           id="editInput"
-          v-model="task.title"
+          v-model="taskTitle"
           type="text"
-          @keydown.enter="toggleEditing(task, false)"
-          @keydown.esc="toggleEditing(task, true)"
+          @keydown.enter="editTask(task.id, taskTitle)"
+          @keydown.esc="toggleEditButton(task)"
         />
       </div>
       <p
@@ -89,15 +84,15 @@ const toggleEditing = (task, cancel) => {
       </p>
 
       <button
-        v-if="editingTask !== task"
-        @click="toggleEditing(task, false)"
+        v-if="editMode !== task"
+        @click="toggleEditButton(task)"
         class="mx-3 rounded bg-slate-50 p-3 shadow hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
       >
         <Icon icon="material-symbols:edit" class="h-6 w-6 text-yellow-400" />
       </button>
       <button
         v-else
-        @click="toggleEditing(task, false)"
+        @click="editTask(task.id, taskTitle)"
         class="mx-3 rounded bg-green-700 p-3 shadow hover:bg-green-600 hover:ring-2 hover:ring-slate-200 active:bg-green-500"
       >
         <Icon
@@ -106,7 +101,7 @@ const toggleEditing = (task, cancel) => {
         />
       </button>
       <button
-        v-if="editingTask !== task"
+        v-if="editMode !== task"
         @click="taskStore.deleteTask(task.id)"
         class="rounded bg-slate-50 p-3 shadow hover:ring-2 hover:ring-slate-200 active:bg-slate-200"
       >
@@ -114,7 +109,7 @@ const toggleEditing = (task, cancel) => {
       </button>
       <button
         v-else
-        @click="toggleEditing(task, true)"
+        @click="toggleEditButton(task)"
         class="rounded bg-red-700 p-3 shadow hover:bg-red-600 hover:ring-2 hover:ring-slate-200 active:bg-red-500"
       >
         <Icon
