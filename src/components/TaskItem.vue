@@ -61,7 +61,7 @@ const editTask = (id, title) => {
         v-if="editMode === task"
       >
         <input
-          class="flex-1 rounded p-3"
+          class="flex-1 rounded border-none p-3 ring-2 ring-slate-600 focus:border-none focus:ring-2 focus:ring-brand"
           id="editInput"
           v-model="taskTitle"
           type="text"
@@ -84,7 +84,7 @@ const editTask = (id, title) => {
         <input
           type="checkbox"
           name="is_completed"
-          class="m-3 mx-2 h-6 w-6 rounded-sm border-brand text-brand group-hover:bg-slate-100 checked:group-hover:bg-current"
+          class="m-3 mx-2 h-6 w-6 rounded-sm border-brand text-brand-100/50 focus:ring-brand check group-hover:bg-slate-200 checked:group-hover:bg-current"
           :checked="task.is_completed"
         />
         <label class="-z-1 flex-1 py-3">
