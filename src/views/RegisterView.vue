@@ -24,7 +24,7 @@ const password = ref("")
       <div class="flex flex-col gap-6">
         <input
           placeholder="Name"
-          class="text-aver border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+          class="text-averia border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
           id="name"
           name="name"
           type="text"
@@ -32,7 +32,7 @@ const password = ref("")
         />
         <input
           placeholder="Email"
-          class="text-aver border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+          class="text-averiaia border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
           id="email"
           name="email"
           type="email"
@@ -40,7 +40,7 @@ const password = ref("")
         />
         <input
           placeholder="Password"
-          class="text-aver border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+          class="text-averia border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
           id="pass"
           name="pass"
           type="password"

@@ -19,10 +19,10 @@ const password = ref("")
       >
         Login
       </h2>
-      <div class="flex flex-col gap-6">
+      <div class="peer flex flex-col gap-6">
         <input
           placeholder="Email"
-          class="border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded text-aver  hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent hover:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+          class="text-aver border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
           id="email"
           name="email"
           type="text"
@@ -30,7 +30,7 @@ const password = ref("")
         />
         <input
           placeholder="Password"
-          class="border-b-2 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded text-aver  hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent hover:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+          class="text-aver border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder:font-normal placeholder:text-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 placeholder:hover:text-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
           id="pass"
           name="pass"
           type="password"
@@ -40,12 +40,13 @@ const password = ref("")
 
         <button
           type="submit"
-          class="mt-6 w-64 self-center rounded-md bg-brand-200 hover:bg-brand transition ease-out duration-200 p-4 text-white"
+          class="mt-6 w-64 self-center rounded-md bg-brand-200 p-4 text-white transition duration-200 ease-out hover:bg-brand"
         >
           Login
         </button>
         <RouterLink
-         to="register" class="self-center text-base text-brand-200 hover:text-brand hover:underline hover:decoration-2 hover:underline-offset-[5px]"
+          to="register"
+          class="self-center text-base text-brand-200 hover:text-brand hover:underline hover:decoration-2 hover:underline-offset-[5px]"
         >
           Don't have an account? Sign Up!
         </RouterLink>
