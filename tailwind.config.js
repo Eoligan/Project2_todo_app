@@ -9,7 +9,8 @@ module.exports = {
       "averia-light": "averia_serif_librelight",
       "averia-light-italic": "averia_serif_libreLtIt",
       "averia-bold": "averia_serif_librebold",
-    },
+      "sans-serif": "sans-serif",
+     },
     extend: {
       colors: {
         brand: {

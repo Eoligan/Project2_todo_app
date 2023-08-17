@@ -4,6 +4,7 @@ import { useTaskStore } from "@/stores/task"
 import { useUserStore } from "@/stores/user"
 import TaskItem from "@/components/TaskItem.vue"
 import errorMessage from "../lib/errors"
+import { Icon } from "@iconify/vue"
 
 const taskStore = useTaskStore()
 const userStore = useUserStore()
@@ -22,19 +23,29 @@ const addTask = async () => {
 </script>
 
 <template>
-  <main class="font-averia">
-    <h1 class="text-7xl">Task</h1>
-    <input
-      id="addTask"
-      v-model="taskTitle"
-      placeholder="Write a task to add"
-      type="text"
-    />
-    <button class="rounded border bg-blue-500" @click="addTask">
-      Add task
-    </button>
+  <main class="flex flex-col items-center justify-center font-averia gap-6">
+    <h2
+      class="relative text-6xl after:absolute after:bottom-1 after:left-0  after:w-full after:h-3 after:bg-slate-400 after:-z-10"
+    >
+      Task List
+    </h2>
+    <div class="flex gap-2">
+      <input
+        id="addTask"
+        v-model="taskTitle"
+        placeholder="Write a task to add"
+        type="text"
+        class="rounded border-none font-sans-serif text-sm ring-2 ring-slate-400 hover:ring-slate-900 focus:outline-none focus:ring-2 focus:ring-black"
+      />
+      <button class="" @click="addTask">
+        <Icon
+          icon="material-symbols:add-circle"
+          class="h-10 w-10 rounded-full text-green-700 hover:text-green-600 active:text-green-500"
+        />
+      </button>
+    </div>
 
-    <ul>
+    <ul class="mt-8">
       <TaskItem></TaskItem>
     </ul>
   </main>

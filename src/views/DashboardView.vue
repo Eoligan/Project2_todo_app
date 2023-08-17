@@ -12,7 +12,7 @@ import TasksLists from "../components/TasksLists.vue"
       </Suspense>
     </nav>
   </header>
-  <main class="m-4 mx-auto max-w-6xl flex-col items-center justify-between">
+  <main class="my-8 mx-auto max-w-6xl flex-col items-center justify-between">
     <TasksLists></TasksLists>
   </main>
 </template>
