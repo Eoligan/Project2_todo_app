@@ -23,7 +23,7 @@ const password = ref("")
         <div class="peer relative flex flex-col">
           <input
             placeholder="Email"
-            class="peer border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder-transparent hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+            class="peer rounded border-none bg-slate-50 py-4 pl-4 tracking-wider placeholder-transparent ring-2 ring-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
             id="email"
             name="email"
             type="text"
@@ -31,14 +31,14 @@ const password = ref("")
           />
           <label
             for="email"
-            class="absolute -top-3.5 bg-slate-50 p-1 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:ml-4 peer-placeholder-shown:tracking-wider peer-focus:-top-3.5 peer-focus:-translate-x-2 peer-focus:bg-slate-50 peer-focus:p-1 peer-focus:text-sm peer-focus:tracking-wider peer-focus:text-brand"
+            class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand"
             >Email</label
           >
         </div>
         <div class="peer relative flex flex-col">
           <input
             placeholder="Password"
-            class="text-averia peer border-x-0 border-b-2 border-t-0 border-slate-400 bg-slate-50 py-4 pl-4 tracking-wider placeholder-transparent hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+            class="peer rounded border-none bg-slate-50 py-4 pl-4 tracking-wider placeholder-transparent ring-2 ring-slate-400 hover:rounded hover:border-b-transparent hover:ring-2 hover:ring-slate-600 focus:rounded focus:border-b-transparent focus:outline-none focus:ring-2 focus:ring-brand"
             id="pass"
             name="pass"
             type="password"
@@ -47,7 +47,7 @@ const password = ref("")
           />
           <label
             for="pass"
-            class="absolute -top-3.5 bg-slate-50 p-1 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:ml-4 peer-placeholder-shown:tracking-wider peer-focus:-top-3.5 peer-focus:-translate-x-0 peer-focus:bg-slate-50 peer-focus:p-1 peer-focus:text-sm peer-focus:tracking-wider peer-focus:text-brand"
+            class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand"
             >Password</label
           >
         </div>
