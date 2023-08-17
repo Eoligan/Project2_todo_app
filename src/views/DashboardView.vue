@@ -1,18 +1,13 @@
 <script setup async>
-import ProfileUser from "@/components/ProfileUser.vue"
-import TasksLists from "../components/TasksLists.vue"
+import TasksLists from "@/components/TasksLists.vue"
+import NavBar from "@/components/NavBar.vue"
 </script>
 
 <template>
-  <header class="pt-8 border-b bg-slate-50 border-secondary shadow-md  pb-8">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between">
-      Logo title
-      <Suspense>
-        <ProfileUser></ProfileUser>
-      </Suspense>
-    </nav>
+  <header class="border-b border-secondary bg-slate-50 pb-8 pt-8 shadow-md">
+    <NavBar></NavBar>
   </header>
-  <main class="my-8 mx-auto max-w-6xl flex-col items-center justify-between">
+  <main class="mx-auto my-8 max-w-6xl flex-col items-center justify-between">
     <TasksLists></TasksLists>
   </main>
 </template>

@@ -50,14 +50,10 @@ const editTask = (id, title) => {
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center gap-4">
-    <li
-      class="group flex w-3/5 items-center justify-between"
-      v-for="task in sortedTasks"
-      :key="task.id"
-    >
+  <div class="flex flex-wrap gap-4">
+    <li class="group flex w-full" v-for="task in sortedTasks" :key="task.id">
       <div
-        class="flex w-full items-center justify-between"
+        class="flex flex-1 items-center justify-between"
         v-if="editMode === task"
       >
         <input
@@ -74,20 +70,20 @@ const editTask = (id, title) => {
         v-else
         @click="taskStore.completedTask(task.id, task.is_completed)"
         :class="{
-          'bg-slate-50 text-slate-400/80 line-through shadow hover:ring-slate-200 active:bg-slate-200':
+          ' bg-slate-50 text-slate-400/80 line-through shadow hover:ring-brand active:bg-slate-200':
             task.is_completed,
           'bg-brand-100/50 shadow hover:ring-brand-200 active:bg-brand-200':
             !task.is_completed,
         }"
-        class="group flex flex-1 cursor-pointer break-all rounded hover:ring-2"
+        class="group flex-1 cursor-pointer items-center justify-between break-all rounded ring-2 ring-brand-100/50 hover:ring-2"
       >
         <input
           type="checkbox"
           name="is_completed"
-          class="m-3 mx-2 h-6 w-6 rounded-sm border-brand text-brand-100/50 focus:ring-brand check group-hover:bg-slate-200 checked:group-hover:bg-current"
+          class="check m-3 mx-2 h-6 w-6 rounded-sm border-brand text-brand-100/50 focus:ring-brand group-hover:bg-slate-200 checked:group-hover:bg-current"
           :checked="task.is_completed"
         />
-        <label class="-z-1 flex-1 py-3">
+        <label class="py-3">
           {{ task.title }}
         </label>
       </div>
