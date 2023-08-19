@@ -50,9 +50,9 @@ const editTask = (id, title) => {
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-4">
+  <div class="flex flex-wrap w-full gap-4">
     <li
-      class="group flex w-full font-sans-serif text-"
+      class="group flex w-full font-sans-serif"
       v-for="task in sortedTasks"
       :key="task.id"
     >
