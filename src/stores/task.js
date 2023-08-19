@@ -16,7 +16,6 @@ export const useTaskStore = defineStore("taskStore", () => {
 
   const addTask = async (user_id, title) => {
     const newTask = { user_id: user_id, title: title, is_completed: false }
-    tasks.value.push(newTask)
 
     const { data, error } = await supabase
       .from("tasks")
@@ -25,12 +24,10 @@ export const useTaskStore = defineStore("taskStore", () => {
 
     if (error) {
       console.log("Error: ", error)
-      tasks.value.pop()
       return false
     }
 
-    // Replace the added task with the response from the database
-    tasks.value.splice(tasks.value.indexOf(newTask), 1, data[0])
+    tasks.value.push(data[0])
     return true
   }
 

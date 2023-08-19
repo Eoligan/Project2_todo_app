@@ -36,6 +36,7 @@ const addTask = async () => {
         placeholder="Write a task to add"
         type="text"
         class="flex-1 rounded border-none font-sans-serif text-sm ring-2 ring-slate-400 hover:ring-slate-900 focus:outline-none focus:ring-2 focus:ring-black"
+        @keydown.enter="addTask"
       />
       <button class="" @click="addTask">
         <Icon
@@ -45,8 +46,8 @@ const addTask = async () => {
       </button>
     </div>
 
-    <ul class="mt-8 flex w-3/5 items-center justify-center">
+    <div class="mt-8 flex w-3/5 items-center justify-center">
       <TaskItem></TaskItem>
-    </ul>
+    </div>
   </main>
 </template>
