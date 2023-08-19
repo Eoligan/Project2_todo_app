@@ -1,6 +1,7 @@
 <script setup>
 import { useUserStore } from "@/stores/user"
 import { ref } from "vue"
+import { Icon } from "@iconify/vue"
 
 const userStore = useUserStore()
 
@@ -9,15 +10,23 @@ const password = ref("")
 </script>
 
 <template>
-  <section class="grid place-items-center">
+  <div
+    class="absolute -top-4 -z-10 h-[calc(100vh-14rem)] w-full opacity-30 grayscale filter"
+  >
+    <img
+      class="h-full w-full object-cover"
+      src="../assets/logo/background.jpg"
+    />
+  </div>
+  <section class="flex items-center justify-center">
     <form
       @submit.prevent="userStore.handleLogin(email, password)"
-      class="h-full w-72 rounded-md bg-slate-50 px-8 pb-8 pt-4 shadow sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10"
+      class="h-full w-72 rounded-md border bg-slate-50 px-8 pb-8 pt-4 shadow-2xl sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10"
     >
       <h2
-        class="mt-2 px-4 text-center text-3xl font-bold tracking-widest sm:mb-8"
+        class="mt-2 px-4 text-center text-secondary text-3xl font-bold tracking-widest sm:mb-8"
       >
-        Login
+        Log in
       </h2>
       <div class="flex flex-col gap-6">
         <div class="peer relative flex flex-col">
@@ -51,11 +60,18 @@ const password = ref("")
             >Password</label
           >
         </div>
+
         <button
           type="submit"
-          class="mt-6 w-64 self-center rounded-md bg-brand-200 p-4 text-white transition duration-200 ease-out hover:bg-brand"
+          class="group relative mt-6 flex w-64 items-center justify-center self-center rounded-md bg-brand-200 p-4 uppercase tracking-wider text-white transition duration-200 ease-out hover:bg-brand"
         >
-          Login
+          Log in
+          <Icon
+            width="24"
+            height="24"
+            icon="iconamoon:arrow-up-2-bold"
+            class="absolute right-20 rotate-90 transition-colors duration-200 ease-out group-hover:text-secondary"
+          />
         </button>
         <RouterLink
           to="register"

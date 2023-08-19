@@ -1,15 +1,23 @@
 <script setup></script>
 
 <template>
-  <header class="m-16 flex flex-col gap-4">
-    <h1
-      class="bg-gradient-to-r from-amber-600 to-amber-900 bg-clip-text text-center font-averia font-bold text-6xl uppercase tracking-widest text-transparent"
-    >
-      There's a lot <br />
-      To-Do
-    </h1>
-  </header>
-  <main>
-    <RouterView> </RouterView>
-  </main>
+  <div class="relative flex min-h-screen flex-col overflow-hidden">
+    <header class="m-16 flex flex-col gap-4">
+      <div class="relative mx-auto">
+        <h1
+          class="absolute -left-2 top-2 w-40 text-center font-averia-light-italic text-2xl lowercase tracking-widest text-brand"
+        >
+          There's a lot
+        </h1>
+      </div>
+      <img
+        class="mx-auto w-72"
+        src="../assets/logo/default-monochrome.svg"
+        alt=""
+      />
+    </header>
+    <main class="relative">
+      <RouterView> </RouterView>
+    </main>
+  </div>
 </template>
