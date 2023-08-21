@@ -3,7 +3,7 @@ import { useTaskStore } from "@/stores/task"
 import { computed, onMounted, nextTick, ref } from "vue"
 import { Icon } from "@iconify/vue"
 import draggable from "vuedraggable"
-import errorMessage from "../lib/errors"
+import errorMessage from "@/lib/errors"
 
 const taskStore = useTaskStore()
 const editMode = ref(null)
@@ -22,6 +22,15 @@ const sortedTasks = computed(() => {
   const tasks = [...taskStore.tasks]
   tasks.sort((a, b) => a.id - b.id)
   return tasks
+})
+
+const dragOptions = computed(() => {
+  return {
+    animation: 200,
+    group: "transition-group",
+    disabled: false,
+    ghostClass: "ghost",
+  }
 })
 
 const toggleEditButton = (task) => {
@@ -53,57 +62,64 @@ const editTask = (id, title) => {
 <template>
   <draggable
     class="relative w-full space-y-4"
-    v-model="list"
     tag="transition-group"
-    group="list"
-    item-key="id"
+    :component-data="{
+      tag: 'ul',
+      name: 'listTransition',
+      type: 'transition-group',
+    }"
+    :list="taskStore.tasks"
+    :group="{ name: 'g1' }"
+    item-key="item"
+    v-bind="dragOptions"
+    @start="drag = true"
+    @end="drag = false"
   >
-    <transition-group tag="ul" name="listTransition">
-      <li
-        class="group flex w-full font-sans-serif"
-        v-for="task in sortedTasks"
-        :key="task.id"
-      >
+    <!-- v-for="task in sortedTasks" -->
+
+    <!-- <transition-group tag="ul" name="listTransition"> -->
+    <template #item="{ element }" :key="element.id">
+      <li class="group flex w-full font-sans-serif">
         <transition name="editionModeTransition" mode="out-in">
           <div
             class="flex flex-1 items-center justify-between"
-            v-if="editMode === task"
+            v-if="editMode === element"
           >
             <input
               class="flex-1 rounded border-none p-3 ring-2 ring-slate-600 focus:border-none focus:ring-2 focus:ring-brand"
               id="editInput"
               v-model="taskTitle"
               type="text"
-              @keydown.enter="editTask(task.id, taskTitle)"
-              @keydown.esc="toggleEditButton(task)"
+              @keydown.enter="editTask(element.id, taskTitle)"
+              @keydown.esc="toggleEditButton(element)"
             />
           </div>
           <div
             v-else
-            @click="taskStore.completedTask(task.id, task.is_completed)"
+            @click="taskStore.completedTask(element.id, element.is_completed)"
             :class="{
               ' bg-slate-200 text-slate-400/80 line-through shadow shadow-black/10 hover:text-slate-500/80 hover:ring-brand active:bg-slate-200':
-                task.is_completed,
+                element.is_completed,
               'bg-brand-100/50 shadow-black/30 hover:ring-brand-200 active:bg-brand-200':
-                !task.is_completed,
+                !element.is_completed,
             }"
             class="group flex-1 cursor-pointer items-center justify-between break-all rounded shadow-lg ring-2 ring-brand-200/50 hover:ring-2"
           >
             <input
               type="checkbox"
               name="is_completed"
-              class="check m-3 mx-2 h-6 w-6 rounded-sm border-brand text-brand-100/70 focus:ring-brand group-hover:bg-slate-300 group-hover:text-brand-100 checked:group-hover:bg-current"
-              :checked="task.is_completed"
+              class="m-3 mx-2 h-6 w-6 cursor-pointer rounded-sm border-brand text-brand-100/70 focus:ring-brand group-hover:bg-slate-300 group-hover:text-brand-100 checked:group-hover:bg-current"
+              :checked="element.is_completed"
             />
-            <label class="py-3">
-              {{ task.title }}
+            <label class="cursor-pointer py-3">
+              {{ element.title }} {{ element.id }}
             </label>
           </div>
         </transition>
         <transition name="editionModeTransition" mode="out-in">
           <button
-            v-if="editMode !== task"
-            @click="toggleEditButton(task)"
+            v-if="editMode !== element"
+            @click="toggleEditButton(element)"
             class="mx-3 rounded bg-slate-200 p-3 shadow-lg shadow-black/30 ring-2 ring-brand-200/50 hover:ring-brand active:bg-slate-300"
           >
             <Icon
@@ -113,7 +129,7 @@ const editTask = (id, title) => {
           </button>
           <button
             v-else
-            @click="editTask(task.id, taskTitle)"
+            @click="editTask(element.id, taskTitle)"
             class="mx-3 rounded bg-green-700 p-3 shadow hover:bg-green-600 hover:ring-2 hover:ring-slate-200 active:bg-green-500"
           >
             <Icon
@@ -124,15 +140,15 @@ const editTask = (id, title) => {
         </transition>
         <transition name="editionModeTransition" mode="out-in">
           <button
-            v-if="editMode !== task"
-            @click="taskStore.deleteTask(task.id)"
+            v-if="editMode !== element"
+            @click="taskStore.deleteTask(element.id)"
             class="rounded bg-slate-200 p-3 shadow-lg shadow-black/30 ring-2 ring-brand-200/50 hover:ring-brand active:bg-slate-300"
           >
             <Icon class="h-6 w-6 text-red-700" icon="material-symbols:delete" />
           </button>
           <button
             v-else
-            @click="toggleEditButton(task)"
+            @click="toggleEditButton(element)"
             class="rounded bg-red-700 p-3 hover:bg-red-600 hover:ring-2 hover:ring-slate-200 active:bg-red-500"
           >
             <Icon
@@ -142,7 +158,8 @@ const editTask = (id, title) => {
           </button>
         </transition>
       </li>
-    </transition-group>
+    </template>
+    <!-- </transition-group> -->
   </draggable>
 </template>
 
@@ -172,5 +189,9 @@ const editTask = (id, title) => {
 .editionModeTransition-leave-from,
 .editionModeTransition-enter-to {
   opacity: 100;
+}
+
+.ghost {
+  background-color: white;
 }
 </style>
