@@ -2,7 +2,7 @@
 import { useTaskStore } from "@/stores/task"
 import { computed, onMounted, nextTick, ref } from "vue"
 import { Icon } from "@iconify/vue"
-import draggable from "vuedraggable"
+import draggable from "zhyswan-vuedraggable"
 import errorMessage from "@/lib/errors"
 
 const taskStore = useTaskStore()
@@ -22,15 +22,6 @@ const sortedTasks = computed(() => {
   const tasks = [...taskStore.tasks]
   tasks.sort((a, b) => a.id - b.id)
   return tasks
-})
-
-const dragOptions = computed(() => {
-  return {
-    animation: 200,
-    group: "transition-group",
-    disabled: false,
-    ghostClass: "ghost",
-  }
 })
 
 const toggleEditButton = (task) => {
@@ -61,19 +52,22 @@ const editTask = (id, title) => {
   }
   editMode.value = null
 }
+
+const numAle = () => Math.random()
 </script>
 
 <template>
   <draggable
     class="relative w-full space-y-4"
     :list="taskStore.tasks"
-    item-key="item"
-    v-bind="dragOptions"
+    item-key="id"
     :component-data="{
       tag: 'ul',
       name: 'listTransition',
       type: 'transition-group',
     }"
+    ghost-class="ghost"
+    animation="200"
     tag="transition-group"
     @start="drag = true"
     @end="drag = false"
@@ -87,22 +81,9 @@ const editTask = (id, title) => {
           @after-leave="focusOnEdit"
           appear
         > -->
-        <div
-          class="flex flex-1 items-center justify-between"
-          v-if="editMode === element"
-        >
-          <input
-            class="flex-1 rounded border-none p-3 ring-2 ring-slate-600 focus:border-none focus:ring-2 focus:ring-brand"
-            id="editInput"
-            v-model="taskTitle"
-            type="text"
-            @keydown.enter="editTask(element.id, taskTitle)"
-            @keydown.esc="toggleEditButton(element)"
-          />
-        </div>
 
         <div
-          v-else
+          v-if="editMode !== element"
           @click="taskStore.completedTask(element.id, element.is_completed)"
           :class="{
             ' bg-slate-200 text-slate-400/80 line-through shadow shadow-black/10 hover:text-slate-500/80 hover:ring-brand active:bg-slate-200':
@@ -122,6 +103,18 @@ const editTask = (id, title) => {
             {{ element.title }} {{ element.id }}
           </label>
         </div>
+
+        <div class="flex flex-1 items-center justify-between" v-else>
+          <input
+            class="flex-1 rounded border-none p-3 ring-2 ring-slate-600 focus:border-none focus:ring-2 focus:ring-brand"
+            id="editInput"
+            v-model="taskTitle"
+            type="text"
+            @keydown.enter="editTask(element.id, taskTitle)"
+            @keydown.esc="toggleEditButton(element)"
+          />
+        </div>
+
         <!-- </transition>
         <transition name="editionModeTransition" mode="out-in"> -->
         <button
@@ -195,6 +188,7 @@ const editTask = (id, title) => {
 }
 
 .ghost {
-  background-color: white;
+  background-color: hsl(40, 6%, 10%);
+  color: transparent;
 }
 </style>

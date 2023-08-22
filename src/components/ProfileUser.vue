@@ -4,7 +4,7 @@ import { useUserStore } from "@/stores/user"
 import { Icon } from "@iconify/vue"
 
 const userStore = useUserStore()
-const userName = ref(userStore.user.user.user_metadata.name)
+const userName = ref(userStore.user?.user.user_metadata.name)
 
 const handleSignOut = () => {
   userStore.handleSignOut()
