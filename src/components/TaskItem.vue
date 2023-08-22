@@ -64,18 +64,29 @@ const editTask = (id, title) => {
 </script>
 
 <template>
-  <ul class="relative w-full space-y-4">
-    <li
-      v-for="element in sortedTasks"
-      :key="element.id"
-      class="group flex w-full font-sans-serif"
-    >
-      <transition
-        name="editionModeTransition"
-        mode="out-in"
-        @after-leave="focusOnEdit"
-        appear
-      >
+  <draggable
+    class="relative w-full space-y-4"
+    :list="taskStore.tasks"
+    item-key="item"
+    v-bind="dragOptions"
+    :component-data="{
+      tag: 'ul',
+      name: 'listTransition',
+      type: 'transition-group',
+    }"
+    tag="transition-group"
+    @start="drag = true"
+    @end="drag = false"
+  >
+    <!-- <ul class="relative w-full space-y-4"> -->
+    <template #item="{ element }" :key="element.id">
+      <li class="group flex w-full font-sans-serif">
+        <!-- <transition
+          name="editionModeTransition"
+          mode="out-in"
+          @after-leave="focusOnEdit"
+          appear
+        > -->
         <div
           class="flex flex-1 items-center justify-between"
           v-if="editMode === element"
@@ -111,8 +122,8 @@ const editTask = (id, title) => {
             {{ element.title }} {{ element.id }}
           </label>
         </div>
-      </transition>
-      <transition name="editionModeTransition" mode="out-in">
+        <!-- </transition>
+        <transition name="editionModeTransition" mode="out-in"> -->
         <button
           v-if="editMode !== element"
           @click="toggleEditButton(element)"
@@ -130,8 +141,8 @@ const editTask = (id, title) => {
             icon="material-symbols:done-rounded"
           />
         </button>
-      </transition>
-      <transition name="editionModeTransition" mode="out-in">
+        <!-- </transition>
+        <transition name="editionModeTransition" mode="out-in"> -->
         <button
           v-if="editMode !== element"
           @click="taskStore.deleteTask(element.id)"
@@ -149,9 +160,10 @@ const editTask = (id, title) => {
             icon="material-symbols:close-rounded"
           />
         </button>
-      </transition>
-    </li>
-  </ul>
+        <!-- </transition> -->
+      </li>
+    </template>
+  </draggable>
 </template>
 
 <style>
