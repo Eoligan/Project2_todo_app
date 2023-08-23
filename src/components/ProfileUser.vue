@@ -14,7 +14,7 @@ const handleSignOut = () => {
 <template>
   <div class="inline-flex items-center justify-end gap-4">
     <p>
-      Welcome <span class="font-bold">{{ userName }}</span
+      Welcome <span v-show="userName" class="font-bold">{{ userName }}</span
       >!
     </p>
 

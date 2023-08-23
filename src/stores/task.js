@@ -14,7 +14,7 @@ export const useTaskStore = defineStore("taskStore", () => {
     }
   }
 
-  const addTask = async (user_id, title) => {
+  const   addTask = async (user_id, title) => {
     const newTask = { user_id: user_id, title: title, is_completed: false }
 
     const { data, error } = await supabase
