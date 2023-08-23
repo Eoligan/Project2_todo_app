@@ -61,9 +61,18 @@ export const useUserStore = defineStore(
 
     const signInWithGitHub = async () => {
       console.log("aver")
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "github",
-      })
+      const { data, error } = await supabase.auth.signInWithOAuth(
+        {
+          provider: "github",
+        },
+        {
+          redirectTo: "https://a-lot-to-do.netlify.app/dashboard",
+        }
+      )
+
+      if (error) {
+        console.log(error)
+      }
     }
 
     return { user, createNewUser, handleLogin, handleSignOut, signInWithGitHub }
