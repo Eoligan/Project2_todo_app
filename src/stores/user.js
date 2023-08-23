@@ -59,7 +59,14 @@ export const useUserStore = defineStore(
       }
     }
 
-    return { user, createNewUser, handleLogin, handleSignOut }
+    const signInWithGitHub = async () => {
+      console.log("aver")
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "github",
+      })
+    }
+
+    return { user, createNewUser, handleLogin, handleSignOut, signInWithGitHub }
   },
   {
     persist: {

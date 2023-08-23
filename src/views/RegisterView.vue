@@ -11,7 +11,7 @@ const password = ref("")
 
 <template>
   <div
-    class="absolute -top-4 -z-10 h-[calc(100vh-14rem)] w-full opacity-30 grayscale filter"
+    class="absolute -top-4 -z-10 h-[100dvh] w-full opacity-20 grayscale filter"
   >
     <img
       class="h-full w-full object-cover"

@@ -11,7 +11,7 @@ const password = ref("")
 
 <template>
   <div
-    class="absolute -top-4 -z-10 h-[calc(100vh-14rem)] w-full opacity-30 grayscale filter"
+    class="absolute -top-4 -z-10 h-[100dvh] w-full opacity-20 grayscale filter"
   >
     <img
       class="h-full w-full object-cover"
@@ -24,7 +24,7 @@ const password = ref("")
       class="h-full w-72 rounded-md border bg-slate-50 px-8 pb-8 pt-4 shadow-2xl sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10"
     >
       <h2
-        class="mt-2 px-4 text-center text-secondary text-3xl font-bold tracking-widest sm:mb-8"
+        class="mt-2 px-4 text-center text-3xl font-bold tracking-widest text-secondary sm:mb-8"
       >
         Log in
       </h2>
@@ -81,5 +81,6 @@ const password = ref("")
         </RouterLink>
       </div>
     </form>
+    <button @click="userStore.signInWithGitHub()">Sign In with GitHub</button>
   </section>
 </template>
