@@ -10,11 +10,11 @@ export const useTaskStore = defineStore("taskStore", () => {
 
     if (error) console.log("Error: ", error)
     else {
-      tasks.value = data
+      tasks.value = data.sort((a, b) => a.index - b.index)
     }
   }
 
-  const   addTask = async (user_id, title) => {
+  const addTask = async (user_id, title) => {
     const newTask = { user_id: user_id, title: title, is_completed: false }
 
     const { data, error } = await supabase
@@ -79,6 +79,13 @@ export const useTaskStore = defineStore("taskStore", () => {
       console.log("Error: ", error)
       tasks.value[index].is_completed = !tasks.value[index].is_completed
     }
+  }
+
+  const updateTasksIndex = async () => {
+    const { error } = await supabase
+      .from("countries")
+      .update({ name: "Australia" })
+      .eq("id", 1)
   }
 
   return { tasks, fetchTasks, addTask, deleteTask, editTask, completedTask }

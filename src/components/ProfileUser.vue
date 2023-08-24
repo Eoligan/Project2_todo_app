@@ -2,9 +2,13 @@
 import { ref } from "vue"
 import { useUserStore } from "@/stores/user"
 import { Icon } from "@iconify/vue"
+import supabase from "@/lib/supabase"
 
 const userStore = useUserStore()
-const userName = ref(userStore.user?.user.user_metadata.name)
+// const userName = ref(userStore.user?.user.user_metadata.user_name)
+const userdata = await supabase.auth
+
+console.log(userdata)
 
 const handleSignOut = () => {
   userStore.handleSignOut()

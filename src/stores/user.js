@@ -65,8 +65,16 @@ export const useUserStore = defineStore(
       })
 
       if (error) {
-        console.log(error)
+        console.log("Error: ", error)
+        throw error
       }
+
+      console.log("llego")
+      const userdata = await supabase.auth.session()
+      console.log("hola!", userdata)
+      // user.value =
+      console.log(user.value)
+      router.push("dashboard")
     }
 
     return { user, createNewUser, handleLogin, handleSignOut, signInWithGitHub }

@@ -1,6 +1,6 @@
 <script setup>
 import { useTaskStore } from "@/stores/task"
-import { computed, onMounted, nextTick, ref } from "vue"
+import { onMounted, nextTick, ref } from "vue"
 import { Icon } from "@iconify/vue"
 import draggable from "zhyswan-vuedraggable"
 import errorMessage from "@/lib/errors"
@@ -16,12 +16,6 @@ onMounted(async () => {
   } catch (error) {
     console.error(error)
   }
-})
-
-const sortedTasks = computed(() => {
-  const tasks = [...taskStore.tasks]
-  tasks.sort((a, b) => a.id - b.id)
-  return tasks
 })
 
 const toggleEditButton = (task) => {
@@ -53,7 +47,6 @@ const editTask = (id, title) => {
   editMode.value = null
 }
 
-const numAle = () => Math.random()
 </script>
 
 <template>
@@ -68,7 +61,6 @@ const numAle = () => Math.random()
     }"
     ghost-class="ghost"
     tag="transition-group"
-    :sort="true"
     @start="drag = true"
     @end="drag = false"
   >

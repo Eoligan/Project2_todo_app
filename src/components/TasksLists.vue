@@ -9,7 +9,7 @@ import { Icon } from "@iconify/vue"
 const taskStore = useTaskStore()
 const userStore = useUserStore()
 let taskTitle = ref("")
-const userId = userStore.user?.user.id
+// const userId = userStore.user?.user.id
 
 const addTask = async () => {
   const title = taskTitle.value
