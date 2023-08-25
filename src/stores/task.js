@@ -81,11 +81,22 @@ export const useTaskStore = defineStore("taskStore", () => {
     }
   }
 
-  const updateTasksIndex = async () => {
+  const updateTasksIndex = async (updatedTasks) => {
+    const updatedIndexes = updatedTasks.map((task) => ({
+      id: task.id,
+      index: task.index,
+    }))
+
     const { error } = await supabase
-      .from("countries")
-      .update({ name: "Australia" })
-      .eq("id", 1)
+      .from("tasks")
+      .upsert(updatedIndexes, { onConflict: ["id"], update: ["index"] })
+
+    if (error) {
+      console.log("Error: ", error)
+      return false
+    }
+
+    return true
   }
 
   return { tasks, fetchTasks, addTask, deleteTask, editTask, completedTask }
