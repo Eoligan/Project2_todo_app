@@ -6,7 +6,7 @@ import { useRouter } from "vue-router"
 export const useUserStore = defineStore(
   "userStore",
   () => {
-    const user = ref()
+    const user = ref(null)
     const router = useRouter()
 
     const createNewUser = async (email, password, name) => {
@@ -15,7 +15,7 @@ export const useUserStore = defineStore(
         password: password,
         options: {
           data: {
-            name: name,
+            user_name: name,
           },
         },
       })
@@ -23,7 +23,7 @@ export const useUserStore = defineStore(
         console.log("Error: ", error)
         throw error
       } else {
-        user.value = data
+        // user.value = data
         router.push("dashboard")
       }
     }
@@ -38,7 +38,7 @@ export const useUserStore = defineStore(
           console.log("Error: ", error)
           throw error
         } else {
-          user.value = data
+          // user.value = data
           router.push("dashboard")
         }
         // alert("Check your email for the login link!")
@@ -66,18 +66,22 @@ export const useUserStore = defineStore(
 
       if (error) {
         console.log("Error: ", error)
-        throw error
       }
-
-      console.log("llego")
-      const userdata = await supabase.auth.session()
-      console.log("hola!", userdata)
-      // user.value =
-      console.log(user.value)
-      router.push("dashboard")
     }
 
-    return { user, createNewUser, handleLogin, handleSignOut, signInWithGitHub }
+    supabase.auth.onAuthStateChange((event, session) => {
+      const userdata = session?.user || null
+
+      user.value = userdata
+    })
+
+    return {
+      user,
+      createNewUser,
+      handleLogin,
+      handleSignOut,
+      signInWithGitHub,
+    }
   },
   {
     persist: {

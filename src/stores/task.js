@@ -23,7 +23,7 @@ export const useTaskStore = defineStore("taskStore", () => {
       .select()
 
     if (error) {
-      console.log("Error: ", error)
+      console.log("Error: ", error.message)
       return false
     }
 

@@ -1,14 +1,17 @@
 <script setup>
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import { useUserStore } from "@/stores/user"
 import { Icon } from "@iconify/vue"
-import supabase from "@/lib/supabase"
 
 const userStore = useUserStore()
-// const userName = ref(userStore.user?.user.user_metadata.user_name)
-const userdata = await supabase.auth
+let userName = ref(userStore.user?.user_metadata.user_name)
 
-console.log(userdata)
+watch(
+  () => userStore.user,
+  () => {
+    userName.value = userStore.user?.user_metadata.user_name
+  }
+)
 
 const handleSignOut = () => {
   userStore.handleSignOut()
