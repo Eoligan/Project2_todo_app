@@ -15,7 +15,18 @@ export const useTaskStore = defineStore("taskStore", () => {
   }
 
   const addTask = async (user_id, title) => {
-    const newTask = { user_id: user_id, title: title, is_completed: false }
+    let index = 0
+    if (tasks.value[tasks.value.length - 1]) {
+      index = tasks.value[tasks.value.length - 1].index
+      index++
+    }
+
+    const newTask = {
+      user_id: user_id,
+      title: title,
+      is_completed: false,
+      index: index,
+    }
 
     const { data, error } = await supabase
       .from("tasks")
@@ -82,18 +93,16 @@ export const useTaskStore = defineStore("taskStore", () => {
   }
 
   const updateTasksIndex = async (updatedTasks) => {
-    const updatedIndexes = updatedTasks.map((task) => ({
-      id: task.id,
-      index: task.index,
-    }))
+    for (const task of updatedTasks) {
+      const { error } = await supabase
+        .from("tasks")
+        .update({ index: task.index })
+        .eq("id", task.id)
 
-    const { error } = await supabase
-      .from("tasks")
-      .upsert(updatedIndexes, { onConflict: ["id"], update: ["index"] })
-
-    if (error) {
-      console.log("Error: ", error)
-      return false
+      if (error) {
+        console.log("Error updating task with ID", task.id, ":", error)
+        return false
+      }
     }
 
     return true

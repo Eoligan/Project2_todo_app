@@ -47,8 +47,23 @@ const editTask = (id, title) => {
   editMode.value = null
 }
 
-const updateTasksIndex = () => {
-  taskStore.updateTasksIndex()
+const updateTasksIndex = (evt) => {
+  const newIndex = evt.moved.newIndex
+
+  let draggedItemNewIndex = 0
+  if (taskStore.tasks[newIndex - 1]) {
+    draggedItemNewIndex = taskStore.tasks[newIndex - 1].index
+    draggedItemNewIndex++
+  }
+
+  taskStore.tasks[newIndex].index = draggedItemNewIndex
+
+  for (let i = newIndex + 1; i < taskStore.tasks.length; i++) {
+    draggedItemNewIndex++
+    taskStore.tasks[i].index = draggedItemNewIndex
+  }
+
+  taskStore.updateTasksIndex(taskStore.tasks)
 }
 </script>
 
@@ -94,7 +109,7 @@ const updateTasksIndex = () => {
               :checked="element.is_completed"
             />
             <label class="cursor-pointer py-3">
-              {{ element.title }} {{ element.id }}
+              {{ element.title }} {{ element.id }} -- {{ element.index }}
             </label>
           </div>
 
