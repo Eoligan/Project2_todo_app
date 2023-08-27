@@ -20,19 +20,22 @@ const handleSignOut = () => {
 
 <template>
   <div class="inline-flex items-center justify-end gap-4">
-    <p>
-      Welcome <span v-show="userName" class="font-bold">{{ userName }}</span
+    <p class="text-sm">
+      Welcome
+      <span v-show="userName" class="ml-0.5 font-averia-bold text-base">{{
+        userName
+      }}</span
       >!
     </p>
 
     <div class="group">
       <button
-        class="flex items-center rounded-xl border bg-secondary py-1 pl-3 font-averia-bold text-sm uppercase text-neutral-200 transition-colors duration-150 ease-in hover:bg-secondary-200 hover:text-neutral-100"
+        class="flex items-center rounded-3xl border bg-secondary py-1 pl-3 pt-1.5 align-middle font-averia text-sm text-neutral-200 transition-colors duration-150 ease-in hover:bg-secondary-200 hover:text-neutral-100"
         @click="handleSignOut"
       >
         Sign Out
         <Icon
-          class="mx-2 h-6 w-6 font-bold text-neutral-200 transition-colors duration-200 ease-in group-hover:text-brand"
+          class="mx-2 h-5 w-5 -translate-y-0.5 font-bold text-neutral-200 transition-colors duration-200 ease-in group-hover:text-brand"
           icon="humbleicons:logout"
         />
       </button>

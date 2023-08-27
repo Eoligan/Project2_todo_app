@@ -47,6 +47,9 @@ const editTask = (id, title) => {
   editMode.value = null
 }
 
+const updateTasksIndex = () => {
+  taskStore.updateTasksIndex()
+}
 </script>
 
 <template>
@@ -63,6 +66,7 @@ const editTask = (id, title) => {
     tag="transition-group"
     @start="drag = true"
     @end="drag = false"
+    @change="updateTasksIndex"
   >
     <template #item="{ element }" :key="element.id">
       <li class="group flex w-full font-sans-serif">
@@ -151,7 +155,7 @@ const editTask = (id, title) => {
   </draggable>
 </template>
 
-<style>
+<style scoped>
 .listTransition-enter-from,
 .listTransition-leave-to {
   opacity: 0;

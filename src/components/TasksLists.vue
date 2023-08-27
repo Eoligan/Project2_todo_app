@@ -24,7 +24,7 @@ const addTask = async () => {
 <template>
   <main class="flex flex-col items-center justify-center gap-6 font-averia">
     <h2
-      class="relative text-6xl text-secondary after:absolute after:bottom-1 after:left-0 after:-z-10 after:h-6 after:w-full after:bg-gradient-to-t after:from-slate-300 after:via-slate-100 after:to-transparent"
+      class="relative font-averia-bold-italic text-6xl text-secondary after:absolute after:-left-1.5 after:bottom-1 after:-z-10 after:h-6 after:w-64 after:-skew-x-12 after:rounded-b after:bg-gradient-to-t after:from-slate-300 after:via-slate-100 after:to-transparent"
     >
       Task List
     </h2>

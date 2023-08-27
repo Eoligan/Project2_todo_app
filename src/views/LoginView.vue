@@ -24,9 +24,9 @@ const password = ref("")
     >
       <form @submit.prevent="userStore.handleLogin(email, password)">
         <h2
-          class="mt-2 px-4 text-center text-3xl font-bold tracking-widest text-secondary sm:mb-8"
+          class="mt-2 pb-2 text-center text-2xl font-bold tracking-wide text-secondary sm:mb-8"
         >
-          Log in
+          Sign in to your account
         </h2>
         <div class="flex flex-col gap-6">
           <div class="peer relative flex flex-col">
@@ -64,7 +64,7 @@ const password = ref("")
             type="submit"
             class="group relative mt-6 flex w-64 items-center justify-center self-center rounded-md bg-brand-200 p-4 uppercase tracking-wider text-white transition duration-200 ease-out hover:bg-brand"
           >
-            Log in
+            Login
             <Icon
               width="24"
               height="24"
@@ -80,18 +80,21 @@ const password = ref("")
           </RouterLink>
         </div>
       </form>
-      <button
-        class="mx-auto mt-8 flex items-center gap-2 rounded bg-[#171515]/10 p-3 text-sm text-[#171515] ring-1 ring-[#171515] hover:bg-[#171515]/20"
-        @click="userStore.signInWithGitHub()"
-      >
-        <Icon
-          width="1.5rem"
-          height="1.5rem"
-          class=""
-          icon="akar-icons:github-fill"
-        />
-        Sign In with GitHub
-      </button>
+      <div class="mt-5 grid gap-2">
+        <p class="text-center text-sm">Or continue with</p>
+        <button
+          class="mx-auto flex items-center gap-2 rounded bg-[#171515]/20 p-2 text-sm font-bold text-[#171515] hover:bg-[#171515]/10"
+          @click="userStore.signInWithGitHub()"
+        >
+          <Icon
+            width="1.2rem"
+            height="1.2rem"
+            class=""
+            icon="akar-icons:github-fill"
+          />
+          GitHub
+        </button>
+      </div>
     </div>
   </section>
 </template>

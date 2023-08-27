@@ -24,7 +24,7 @@ const password = ref("")
       class="h-full w-72 rounded-md border bg-slate-50 px-8 pb-8 pt-4 shadow-2xl sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10"
     >
       <h2
-        class="mt-2 px-4 text-center text-3xl font-bold tracking-widest text-secondary sm:mb-8"
+        class="mt-2 px-4 text-center text-2xl font-bold tracking-wider text-secondary sm:mb-8"
       >
         Sign Up
       </h2>

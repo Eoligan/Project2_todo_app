@@ -99,5 +99,13 @@ export const useTaskStore = defineStore("taskStore", () => {
     return true
   }
 
-  return { tasks, fetchTasks, addTask, deleteTask, editTask, completedTask }
+  return {
+    tasks,
+    fetchTasks,
+    addTask,
+    deleteTask,
+    editTask,
+    completedTask,
+    updateTasksIndex,
+  }
 })
