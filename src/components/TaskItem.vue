@@ -109,7 +109,7 @@ const updateTasksIndex = (evt) => {
               :checked="element.is_completed"
             />
             <label class="cursor-pointer py-3">
-              {{ element.title }} {{ element.id }} -- {{ element.index }}
+              {{ element.title }}
             </label>
           </div>
 
