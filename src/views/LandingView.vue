@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="relative flex min-h-screen flex-col overflow-hidden">
+  <div class="relative flex flex-col overflow-hidden">
     <header class="m-10 flex flex-col">
       <div class="relative mx-auto">
         <h1
@@ -16,8 +16,11 @@
         alt=""
       />
     </header>
-    <main class="relative">
-      <RouterView> </RouterView>
+    <main>
+      
+      <div class="w-full flex place-items-center justify-center h-full bg-[url('assets/logo/background.jpg')] bg-cover backdrop-grayscale  ">
+        <RouterView></RouterView>
+      </div> 
     </main>
   </div>
 </template>

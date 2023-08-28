@@ -10,14 +10,6 @@ const password = ref("")
 </script>
 
 <template>
-  <div
-    class="absolute -top-4 -z-10 h-[100dvh] w-full opacity-20 grayscale filter"
-  >
-    <img
-      class="h-full w-full object-cover"
-      src="../assets/logo/background.jpg"
-    />
-  </div>
   <section class="flex items-center justify-center">
     <div
       class="h-full w-72 rounded-md border bg-slate-50 px-8 pb-8 pt-4 shadow-2xl sm:w-96 sm:px-10 lg:w-[32rem] lg:px-14 lg:py-10"

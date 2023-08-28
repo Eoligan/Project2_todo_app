@@ -24,11 +24,13 @@ const addTask = async () => {
 <template>
   <main class="flex flex-col items-center justify-center gap-6 font-averia">
     <h2
-      class="relative font-averia-bold-italic text-6xl text-secondary after:absolute after:-left-1.5 after:bottom-1 after:-z-10 after:h-6 after:w-64 after:-skew-x-12 after:rounded-b after:bg-gradient-to-t after:from-slate-300 after:via-slate-100 after:to-transparent"
+      class="after:w-48 relative font-averia-bold-italic text-5xl text-secondary after:absolute after:-left-0 after:bottom-1 after:-z-10 after:h-5 after:-skew-x-12 after:rounded-b after:bg-gradient-to-t after:from-slate-300 after:via-slate-100 after:to-transparent sm:text-6xl  sm:after:h-6 sm:after:w-60"
     >
       Task List
     </h2>
-    <div class="flex w-3/5 items-center justify-between gap-2">
+    <div
+      class="flex w-11/12 items-center justify-between gap-2 md:w-4/5 lg:w-4/6"
+    >
       <input
         id="addTask"
         v-model="taskTitle"
@@ -45,7 +47,9 @@ const addTask = async () => {
       </button>
     </div>
 
-    <div class="mt-8 flex w-3/5 items-center justify-center">
+    <div
+      class="mt-8 flex w-11/12 items-center justify-center md:w-4/5 lg:w-4/6"
+    >
       <TaskItem></TaskItem>
     </div>
   </main>

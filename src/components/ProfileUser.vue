@@ -19,8 +19,8 @@ const handleSignOut = () => {
 </script>
 
 <template>
-  <div class="inline-flex items-center justify-end gap-4">
-    <p class="text-sm">
+  <div class="block sm:inline-flex items-center justify-end gap-4 sm:mx-8">
+    <p class="text-sm mx-2">
       Welcome
       <span v-show="userName" class="ml-0.5 font-averia-bold text-base">{{
         userName
@@ -28,9 +28,9 @@ const handleSignOut = () => {
       >!
     </p>
 
-    <div class="group">
+    <div class="group flex items-center justify-center sm:block">
       <button
-        class="flex items-center rounded-3xl border bg-secondary py-1 pl-3 pt-1.5 align-middle font-averia text-sm text-neutral-200 transition-colors duration-150 ease-in hover:bg-secondary-200 hover:text-neutral-100"
+        class="flex items-center rounded-3xl border bg-secondary py-0.5 pl-3 pt-1 sm:py-1 sm:pt-1.5 align-middle font-averia text-sm text-neutral-200 transition-colors duration-150 ease-in hover:bg-secondary-200 hover:text-neutral-100"
         @click="handleSignOut"
       >
         Sign Out
