@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="relative flex flex-col overflow-hidden">
+  <div class="relative flex h-screen flex-col">
     <header class="m-10 flex flex-col">
       <div class="relative mx-auto">
         <h1
@@ -16,11 +16,15 @@
         alt=""
       />
     </header>
-    <main>
-      
-      <div class="w-full flex place-items-center justify-center h-full bg-[url('assets/logo/background.jpg')] bg-cover backdrop-grayscale  ">
+    <main class="flex-grow">
+      <img class="absolute" src="../assets/logo/background.jpg" alt="" />
+      <div
+        class="relative flex h-full w-full place-items-center justify-center bg-cover bg-no-repeat"
+      >
         <RouterView></RouterView>
-      </div> 
+      </div>
     </main>
   </div>
 </template>
+
+<style scoped></style>
