@@ -133,7 +133,7 @@ const updateTasksIndex = (evt) => {
             <Icon
               icon="material-symbols:edit"
               class="h-6 w-6 text-yellow-500"
-            />
+            />  
           </button>
           <button
             v-else
