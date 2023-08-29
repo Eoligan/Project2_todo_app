@@ -95,7 +95,8 @@ const updateTasksIndex = (evt) => {
             v-if="editMode !== element"
             @click="taskStore.completedTask(element.id, element.is_completed)"
             :class="{
-              'bg-stone-100 line-through': element.is_completed,
+              'bg-stone-100 text-stone-400/70 line-through hover:text-stone-400':
+                element.is_completed,
               'bg-brand-100/10 shadow hover:shadow-md': !element.is_completed,
             }"
             class="group flex flex-1 cursor-pointer items-center justify-between break-all rounded"
@@ -103,7 +104,7 @@ const updateTasksIndex = (evt) => {
             <input
               type="checkbox"
               name="is_completed"
-              class="m-3 mx-2 h-6 w-6 cursor-pointer rounded-sm border-brand text-brand group-hover:bg-brand group-hover:text-brand-300 checked:group-hover:bg-current"
+              class="m-3 mx-2 h-6 w-6 cursor-pointer rounded-sm border-brand text-brand group-hover:bg-brand-100/30 group-hover:text-brand-300 checked:group-hover:bg-current"
               :checked="element.is_completed"
             />
             <label class="grow cursor-pointer px-2 py-3">
@@ -114,7 +115,7 @@ const updateTasksIndex = (evt) => {
                 width="1.5rem"
                 height="1.5rem"
                 icon="material-symbols:edit"
-                class="m-2 text-transparent hover:!text-yellow-300 group-hover:text-yellow-500"
+                class="mr-2 text-transparent hover:!text-yellow-300 group-hover:text-yellow-500"
               />
             </button>
             <button @click="taskStore.deleteTask(element.id)" class="">
@@ -125,9 +126,12 @@ const updateTasksIndex = (evt) => {
             </button>
           </div>
 
-          <div class="flex flex-1 items-center justify-between" v-else>
+          <div
+            class="focus: flex flex-1 items-center justify-between rounded ring-1 ring-brand"
+            v-else
+          >
             <input
-              class="flex-1 rounded border-none p-3 focus:border-none"
+              class="p-3none flex-1 rounded border-none p-3 focus:ring-0"
               id="editInput"
               v-model="taskTitle"
               type="text"
@@ -136,7 +140,7 @@ const updateTasksIndex = (evt) => {
             />
             <button
               @click="editTask(element.id, taskTitle)"
-              class="rounded bg-green-700 shadow hover:bg-green-600 hover:ring-slate-200 active:bg-green-500"
+              class="mr-2 rounded bg-green-700 hover:bg-green-600 active:bg-green-500"
             >
               <Icon
                 class="-m-1 h-8 w-8 text-white"
@@ -145,7 +149,7 @@ const updateTasksIndex = (evt) => {
             </button>
             <button
               @click="toggleEditButton(element)"
-              class="rounded bg-red-700 p-3 hover:bg-red-600 active:bg-red-500"
+              class="mr-2 rounded bg-red-700 hover:bg-red-600 active:bg-red-500"
             >
               <Icon
                 class="-m-1 h-8 w-8 text-white"

@@ -7,7 +7,7 @@ import NavBar from "@/components/NavBar.vue"
   <header class="border-b border-secondary bg-slate-50 pb-8 pt-8 shadow-xl shadow-black/10">
     <NavBar></NavBar>
   </header>
-  <main class="mx-auto my-8 max-w-6xl flex-col items-center justify-between">
+  <main class="mx-auto p-4 my-8 max-w-3xl flex-col items-center justify-between">
     <TasksLists></TasksLists>
   </main>
 </template>
