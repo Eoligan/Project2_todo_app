@@ -32,7 +32,7 @@ const password = ref("")
             />
             <label
               for="email"
-              class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand"
+              class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand sm:peer-placeholder-shown:top-3.5 sm:peer-focus:-top-4 sm:peer-focus:left-2"
               >Email</label
             >
           </div>
@@ -48,20 +48,20 @@ const password = ref("")
             />
             <label
               for="pass"
-              class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand"
+              class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand sm:peer-placeholder-shown:top-3.5 sm:peer-focus:-top-4 sm:peer-focus:left-2"
               >Password</label
             >
           </div>
           <button
             type="submit"
-            class="group relative mt-6 flex h-8 w-full items-center justify-center self-center rounded-md bg-brand-200 p-4 uppercase tracking-wider text-white ring-2 ring-brand-200 transition duration-200 ease-out hover:bg-brand"
+            class="group relative mt-6 flex h-8 w-full items-center justify-center self-center rounded-md bg-brand-200 p-4 uppercase tracking-wider text-white ring-2 ring-brand-200 transition duration-200 ease-out hover:bg-brand hover:ring-brand"
           >
             Login
             <Icon
               width="24"
               height="24"
               icon="iconamoon:arrow-up-2-bold"
-              class="absolute right-20 rotate-90 transition-colors duration-200 ease-out group-hover:text-secondary sm:right-36 lg:right-32"
+              class="absolute right-20 rotate-90 transition-colors duration-200 ease-out group-hover:text-secondary sm:right-[9.5rem]"
             />
           </button>
           <RouterLink
@@ -72,7 +72,7 @@ const password = ref("")
           </RouterLink>
         </div>
       </form>
-      <!-- <div class="mt-5 grid gap-2">
+      <div class="mt-5 grid gap-2">
         <p class="text-center text-sm">Or continue with</p>
         <button
           class="mx-auto flex items-center gap-2 rounded bg-[#171515]/20 p-2 text-sm font-bold text-[#171515] hover:bg-[#171515]/10"
@@ -86,7 +86,7 @@ const password = ref("")
           />
           GitHub
         </button>
-      </div> -->
+      </div>
     </div>
   </section>
 </template>
