@@ -127,7 +127,7 @@ const updateTasksIndex = (evt) => {
           </div>
 
           <div
-            class="focus: flex flex-1 items-center justify-between rounded ring-1 ring-brand"
+            class="focus: flex flex-1 items-center justify-between rounded"
             v-else
           >
             <input
@@ -195,6 +195,9 @@ const updateTasksIndex = (evt) => {
 
 .ghost div {
   opacity: 0.8;
-  background: hsl(36, 66%, 58.4%);
+  background: hsl(36, 74%, 67%);
+  text-decoration: none;
+  color: white;
+  border: 2px solid black;
 }
 </style>
