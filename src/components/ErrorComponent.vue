@@ -1,7 +1,5 @@
 <script setup>
-import { ref } from "vue"
-
-const errorMessage = ref("")
+import { Icon } from "@iconify/vue"
 
 const props = defineProps({
   message: String,
@@ -10,8 +8,14 @@ const props = defineProps({
 
 <template>
   <Transition name="error-transition" mode="out-in" appear leave>
-    <div class="error-message">
-      {{ props.message }}
+    <div class="relative tracking-tight">
+      <Icon
+        class="absolute -top-3 left-3 text-red-500"
+        icon="iconoir:nav-arrow-up"
+      />
+      <div class="error-message relative">
+        {{ props.message }}
+      </div>
     </div>
   </Transition>
 </template>
@@ -32,16 +36,11 @@ const props = defineProps({
 }
 
 .error-message {
-  background-color: #be0000;
-  color: white;
-  padding: 1rem;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 0.2rem 0.5rem;
   border-radius: 5px;
   text-align: center;
-  position: fixed;
   z-index: 25;
-  top: 20%;
-  left: 50%;
-  translate: (0%, -50%);
-  position: absolute;
 }
 </style>

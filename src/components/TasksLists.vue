@@ -4,7 +4,7 @@ import { useTaskStore } from "@/stores/task"
 import { useUserStore } from "@/stores/user"
 import TaskItem from "@/components/TaskItem.vue"
 import { Icon } from "@iconify/vue"
-import LengthAddError from "@/components/LengthAddError.vue"
+import ErrorComponent from "@/components/ErrorComponent.vue"
 
 const taskStore = useTaskStore()
 const userStore = useUserStore()
@@ -20,7 +20,7 @@ const addTask = async () => {
 
     setTimeout(() => {
       isLengthOk.value = true
-    }, 3000)
+    }, 4000)
     return
   }
   await taskStore.addTask(userStore.user.id, title)
@@ -28,16 +28,18 @@ const addTask = async () => {
 </script>
 
 <template>
-  <div v-if="!isLengthOk" class="relative">
-    <LengthAddError message="The title must be longer than 3 characters" />
-  </div>
   <main class="flex flex-col items-center justify-center gap-6 font-averia">
     <h2
       class="relative place-self-start font-averia-bold text-5xl text-secondary after:w-48 sm:text-6xl sm:after:h-6"
     >
       Task List
     </h2>
-    <div class="group flex w-full items-center rounded ring-2 ring-secondary">
+    <div
+      class="group relative flex w-full items-center rounded ring-2 ring-secondary"
+    >
+      <div v-if="!isLengthOk" class="absolute left-0 top-[3.25rem]">
+        <ErrorComponent message="At least 3 characters" />
+      </div>
       <input
         id="addTask"
         v-model="taskTitle"
