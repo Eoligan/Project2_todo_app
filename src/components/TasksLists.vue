@@ -28,23 +28,23 @@ const addTask = async () => {
     >
       Task List
     </h2>
-    <div class="group flex w-full items-center gap-2 rounded">
+    <div class="group flex w-full items-center rounded ring-2 ring-secondary">
       <input
         id="addTask"
         v-model="taskTitle"
         placeholder="Write a task to add"
         type="text"
-        class="flex-1 border-none font-sans-serif ring-0 focus:border-none focus:outline-none focus:ring-0"
+        class="ml-2 w-full border-none pl-1 font-sans-serif ring-0 focus:border-none focus:outline-none focus:ring-0"
         @keydown.enter="addTask"
       />
-      <span>
-        <button class="" @click="addTask">
-          <Icon
-            icon="material-symbols:add"
-            class="h-10 w-10 rounded-r bg-secondary text-white ring-2 ring-secondary hover:bg-secondary/80 hover:ring-secondary/80 active:bg-secondary/60 active:ring-secondary/60"
-          />
-        </button>
-      </span>
+      <button @click="addTask">
+        <Icon
+          icon="material-symbols:add"
+          width="2.5rem"
+          height="2.5rem"
+          class="rounded-r bg-secondary text-white ring-2 ring-secondary hover:bg-secondary/80 hover:ring-secondary/80 active:bg-secondary/60 active:ring-secondary/60"
+        />
+      </button>
     </div>
 
     <div class="mt-8 flex w-full items-center justify-center">
