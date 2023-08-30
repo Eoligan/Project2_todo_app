@@ -3,7 +3,6 @@ import { useTaskStore } from "@/stores/task"
 import { onMounted, nextTick, ref } from "vue"
 import { Icon } from "@iconify/vue"
 import draggable from "zhyswan-vuedraggable"
-import errorMessage from "@/lib/errors"
 
 const taskStore = useTaskStore()
 const editMode = ref(null)
@@ -104,7 +103,7 @@ const updateTasksIndex = (evt) => {
             <input
               type="checkbox"
               name="is_completed"
-              class="m-3 mx-2 h-6 w-6 cursor-pointer focus:ring-brand rounded-sm border-brand text-brand group-hover:bg-brand-100/30 group-hover:text-brand-300 checked:group-hover:bg-current"
+              class="m-3 mx-2 h-6 w-6 cursor-pointer rounded-sm border-brand text-brand focus:ring-brand group-hover:bg-brand-100/30 group-hover:text-brand-300 checked:group-hover:bg-current"
               :checked="element.is_completed"
             />
             <label class="grow cursor-pointer px-2 py-3">
