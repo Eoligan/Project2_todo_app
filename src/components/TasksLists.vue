@@ -11,9 +11,6 @@ const userStore = useUserStore()
 let taskTitle = ref("")
 
 const isLengthOk = ref(true)
-const isTasks = computed(() => {
-  return taskStore.tasks.length
-})
 
 const addTask = async () => {
   const title = taskTitle.value
@@ -29,17 +26,10 @@ const addTask = async () => {
   await taskStore.addTask(userStore.user.id, title)
 }
 
-watch(
-  () => taskStore.tasks.length,
-  () => {
-    const input = document.getElementById("addTask")
-    input.focus()
-  }
-)
 </script>
 
 <template>
-  <main class="flex flex-col items-center justify-center gap-6 font-averia">
+  <main class="flex flex-col items-center justify-center gap-6">
     <h2
       class="relative place-self-start font-averia-bold text-5xl text-secondary after:w-48 sm:text-6xl sm:after:h-6"
     >
@@ -69,14 +59,8 @@ watch(
       </button>
     </div>
 
-    <div v-if="isTasks" class="mt-8 flex w-full items-center justify-center">
-      <TaskItem></TaskItem>
-    </div>
-    <div v-else class="mt-10 font-sans-serif text-xl">
-      Tasks list is empty!
-      <span class="font-bold"> Add new task </span>
-      to start
-    </div>
+    <TaskItem></TaskItem>
+    
   </main>
 </template>
 

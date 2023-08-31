@@ -16,7 +16,7 @@
         alt=""
       />
     </header>
-    <main class="relative grow flex h-screen">
+    <main class="relative flex h-screen grow">
       <img
         class="absolute -z-10 h-full w-full object-cover opacity-30 grayscale"
         src="../assets/logo/background.jpg"
