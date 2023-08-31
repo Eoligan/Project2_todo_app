@@ -129,37 +129,35 @@ const updateTasksIndex = (evt) => {
           </div>
 
           <div
-            class="focus: flex flex-1 items-center justify-between rounded"
+            class="focus: flex flex-1 items-center justify-between rounded ring-1 ring-black"
             v-else
           >
             <input
-              class="p-3none flex-1 rounded border-none bg-stone-100 p-3 focus:ring-0"
+              class="p-3none flex-1 rounded border-none p-3 focus:ring-0"
               id="editInput"
               v-model="taskTitle"
               type="text"
               @keydown.enter="editTask(element.id, taskTitle)"
               @keydown.esc="toggleEditButton(element)"
             />
-            <div class="bg-stone-100">
-              <button
-                @click="editTask(element.id, taskTitle)"
-                class="mr-2 rounded bg-green-700 hover:bg-green-600 active:bg-green-500"
-              >
-                <Icon
-                  class="-m-1 h-8 w-8 text-white"
-                  icon="material-symbols:done-rounded"
-                />
-              </button>
-              <button
-                @click="toggleEditButton(element)"
-                class="mr-2 rounded bg-red-700 hover:bg-red-600 active:bg-red-500"
-              >
-                <Icon
-                  class="-m-1 h-8 w-8 text-white"
-                  icon="material-symbols:close-rounded"
-                />
-              </button>
-            </div>
+            <button
+              @click="editTask(element.id, taskTitle)"
+              class="mr-2 rounded bg-green-700 hover:bg-green-600 active:bg-green-500"
+            >
+              <Icon
+                class="-m-1 h-8 w-8 text-white"
+                icon="material-symbols:done-rounded"
+              />
+            </button>
+            <button
+              @click="toggleEditButton(element)"
+              class="mr-2 rounded bg-red-700 hover:bg-red-600 active:bg-red-500"
+            >
+              <Icon
+                class="-m-1 h-8 w-8 text-white"
+                icon="material-symbols:close-rounded"
+              />
+            </button>
           </div>
         </transition>
       </li>
