@@ -107,19 +107,22 @@ const updateTasksIndex = (evt) => {
               :checked="element.is_completed"
             />
             <label class="grow cursor-pointer px-2 py-3">
-              {{ element.title }}
+              {{ element.title }} ojal
             </label>
-            <button @click="toggleEditButton(element)" class="">
+            <button @click.stop="toggleEditButton(element)" class="relative">
               <Icon
                 width="1.5rem"
                 height="1.5rem"
                 icon="material-symbols:edit"
-                class="mr-2 text-yellow-500 hover:!text-yellow-400 group-hover:text-yellow-500 lg:text-transparent"
+                class="z-10 mr-2 text-yellow-500 hover:!text-yellow-400 group-hover:text-yellow-500 lg:text-transparent"
               />
             </button>
-            <button @click="taskStore.deleteTask(element.id)" class="">
+            <button
+              @click.stop="taskStore.deleteTask(element.id)"
+              class="relative"
+            >
               <Icon
-                class="mr-2 h-6 w-6 text-red-700 hover:!text-red-600 group-hover:text-red-700 lg:text-transparent"
+                class="z-10 mr-2 h-6 w-6 text-red-700 hover:!text-red-600 group-hover:text-red-700 lg:text-transparent"
                 icon="material-symbols:delete"
               />
             </button>
@@ -130,31 +133,33 @@ const updateTasksIndex = (evt) => {
             v-else
           >
             <input
-              class="p-3none flex-1 rounded border-none p-3 focus:ring-0"
+              class="p-3none flex-1 rounded border-none bg-stone-100 p-3 focus:ring-0"
               id="editInput"
               v-model="taskTitle"
               type="text"
               @keydown.enter="editTask(element.id, taskTitle)"
               @keydown.esc="toggleEditButton(element)"
             />
-            <button
-              @click="editTask(element.id, taskTitle)"
-              class="mr-2 rounded bg-green-700 hover:bg-green-600 active:bg-green-500"
-            >
-              <Icon
-                class="-m-1 h-8 w-8 text-white"
-                icon="material-symbols:done-rounded"
-              />
-            </button>
-            <button
-              @click="toggleEditButton(element)"
-              class="mr-2 rounded bg-red-700 hover:bg-red-600 active:bg-red-500"
-            >
-              <Icon
-                class="-m-1 h-8 w-8 text-white"
-                icon="material-symbols:close-rounded"
-              />
-            </button>
+            <div class="bg-stone-100">
+              <button
+                @click="editTask(element.id, taskTitle)"
+                class="mr-2 rounded bg-green-700 hover:bg-green-600 active:bg-green-500"
+              >
+                <Icon
+                  class="-m-1 h-8 w-8 text-white"
+                  icon="material-symbols:done-rounded"
+                />
+              </button>
+              <button
+                @click="toggleEditButton(element)"
+                class="mr-2 rounded bg-red-700 hover:bg-red-600 active:bg-red-500"
+              >
+                <Icon
+                  class="-m-1 h-8 w-8 text-white"
+                  icon="material-symbols:close-rounded"
+                />
+              </button>
+            </div>
           </div>
         </transition>
       </li>
