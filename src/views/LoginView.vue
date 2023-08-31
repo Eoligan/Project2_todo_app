@@ -2,11 +2,25 @@
 import { useUserStore } from "@/stores/user"
 import { ref } from "vue"
 import { Icon } from "@iconify/vue"
+import ErrorComponent from "@/components/ErrorComponent.vue"
 
 const userStore = useUserStore()
 
 const email = ref("")
 const password = ref("")
+
+const errorMessage = ref("")
+const isLoginValid = ref(true)
+
+const handleLogin = async () => {
+  errorMessage.value = await userStore.handleLogin(email.value, password.value)
+  
+  if (errorMessage) isLoginValid.value = false
+
+  setTimeout(() => {
+    isLoginValid.value = true
+  }, 4000)
+}
 </script>
 
 <template>
@@ -14,7 +28,7 @@ const password = ref("")
     <div
       class="w-80 rounded-md border bg-slate-50 px-8 pb-8 pt-4 shadow-2xl sm:w-[30rem] sm:px-10 lg:w-[30rem] lg:py-10"
     >
-      <form @submit.prevent="userStore.handleLogin(email, password)">
+      <form @submit.prevent="handleLogin(email, password)">
         <h2
           class="mb-8 mt-2 text-center text-lg font-bold tracking-wide text-secondary sm:mb-10 md:text-2xl lg:mb-12"
         >
@@ -51,6 +65,9 @@ const password = ref("")
               class="absolute -top-4 left-2 bg-slate-50 p-0.5 text-sm tracking-wider text-slate-400 transition-all peer-placeholder-shown:left-3.5 peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-focus:-top-4 peer-focus:left-2 peer-focus:bg-slate-50 peer-focus:p-0.5 peer-focus:text-sm peer-focus:text-brand sm:peer-placeholder-shown:top-3.5 sm:peer-focus:-top-4 sm:peer-focus:left-2"
               >Password</label
             >
+            <div v-if="!isLoginValid" class="absolute left-0 top-[4.25rem]">
+              <ErrorComponent :message="errorMessage" />
+            </div>
           </div>
           <button
             type="submit"

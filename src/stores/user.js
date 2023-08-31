@@ -10,7 +10,7 @@ export const useUserStore = defineStore(
     const router = useRouter()
 
     const createNewUser = async (email, password, name) => {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: email,
         password: password,
         options: {
@@ -23,7 +23,6 @@ export const useUserStore = defineStore(
         console.log("Error: ", error)
         throw error
       } else {
-        // user.value = data
         router.push("dashboard")
       }
     }
@@ -38,14 +37,10 @@ export const useUserStore = defineStore(
           console.log("Error: ", error)
           throw error
         } else {
-          // user.value = data
           router.push("dashboard")
         }
-        // alert("Check your email for the login link!")
       } catch (error) {
-        if (error instanceof Error) {
-          alert(error.message)
-        }
+        return error.message
       }
     }
 
@@ -60,7 +55,7 @@ export const useUserStore = defineStore(
     }
 
     const signInWithGitHub = async () => {
-      const { data, error } = await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
       })
 

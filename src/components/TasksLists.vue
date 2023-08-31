@@ -15,7 +15,7 @@ const isLengthOk = ref(true)
 const addTask = async () => {
   const title = taskTitle.value
   taskTitle.value = ""
-  if (title.length <= 3) {
+  if (title.length < 3) {
     isLengthOk.value = false
 
     setTimeout(() => {
