@@ -114,7 +114,7 @@ const updateTasksIndex = (evt) => {
                 width="1.5rem"
                 height="1.5rem"
                 icon="material-symbols:edit"
-                class="mr-2 text-yellow-500 hover:!text-yellow-400 group-hover:text-yellow-500 lg :text-transparent"
+                class="mr-2 text-yellow-500 hover:!text-yellow-400 group-hover:text-yellow-500 lg:text-transparent"
               />
             </button>
             <button @click="taskStore.deleteTask(element.id)" class="">

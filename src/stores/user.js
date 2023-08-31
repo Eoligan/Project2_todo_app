@@ -34,12 +34,13 @@ export const useUserStore = defineStore(
           password: password,
         })
         if (error) {
-          console.log("Error: ", error)
           throw error
         } else {
           router.push("dashboard")
         }
       } catch (error) {
+        console.log("Error: ", error)
+
         return error.message
       }
     }

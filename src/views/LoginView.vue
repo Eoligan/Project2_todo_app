@@ -14,7 +14,7 @@ const isLoginValid = ref(true)
 
 const handleLogin = async () => {
   errorMessage.value = await userStore.handleLogin(email.value, password.value)
-  
+
   if (errorMessage) isLoginValid.value = false
 
   setTimeout(() => {
