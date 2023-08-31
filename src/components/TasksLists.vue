@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import { ref, watch, computed } from "vue"
 import { useTaskStore } from "@/stores/task"
 import { useUserStore } from "@/stores/user"
 import TaskItem from "@/components/TaskItem.vue"
@@ -11,6 +11,9 @@ const userStore = useUserStore()
 let taskTitle = ref("")
 
 const isLengthOk = ref(true)
+const isTasks = computed(() => {
+  return taskStore.tasks.length
+})
 
 const addTask = async () => {
   const title = taskTitle.value
@@ -25,6 +28,14 @@ const addTask = async () => {
   }
   await taskStore.addTask(userStore.user.id, title)
 }
+
+watch(
+  () => taskStore.tasks.length,
+  () => {
+    const input = document.getElementById("addTask")
+    input.focus()
+  }
+)
 </script>
 
 <template>
@@ -58,8 +69,13 @@ const addTask = async () => {
       </button>
     </div>
 
-    <div class="mt-8 flex w-full items-center justify-center">
+    <div v-if="isTasks" class="mt-8 flex w-full items-center justify-center">
       <TaskItem></TaskItem>
+    </div>
+    <div v-else class="mt-10 font-sans-serif text-xl">
+      Tasks list is empty!
+      <span class="font-bold"> Add new task </span>
+      to start
     </div>
   </main>
 </template>

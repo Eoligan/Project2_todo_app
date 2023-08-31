@@ -76,6 +76,7 @@ const updateTasksIndex = (evt) => {
       name: 'listTransition',
       type: 'transition-group',
     }"
+    animation="200"
     ghost-class="ghost"
     tag="transition-group"
     @start="drag = true"
@@ -107,7 +108,7 @@ const updateTasksIndex = (evt) => {
               :checked="element.is_completed"
             />
             <label class="grow cursor-pointer px-2 py-3">
-              {{ element.title }} ojal
+              {{ element.title }}
             </label>
             <button @click.stop="toggleEditButton(element)" class="relative">
               <Icon
