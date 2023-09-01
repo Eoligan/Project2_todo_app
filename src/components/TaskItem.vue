@@ -85,7 +85,7 @@ const updateTasksIndex = (evt) => {
     class="mt-8 flex w-full items-center justify-center"
   >
     <draggable
-      class="relative w-full space-y-4"
+      class="relative w-full"
       v-model="taskStore.tasks"
       item-key="id"
       :component-data="{
@@ -101,7 +101,7 @@ const updateTasksIndex = (evt) => {
       @change="updateTasksIndex"
     >
       <template #item="{ element }" :key="element.id">
-        <li class="group flex w-full font-sans-serif">
+        <li class="group mb-4 flex w-full font-sans-serif">
           <transition
             name="editionModeTransition"
             mode="out-in"
