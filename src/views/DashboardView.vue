@@ -1,6 +1,6 @@
 <script setup async>
 import NavBar from "@/components/NavBar.vue"
-import TasksView from "./TasksView.vue"
+import CardView from "@/components/CardView.vue"
 </script>
 
 <template>
@@ -12,6 +12,6 @@ import TasksView from "./TasksView.vue"
   <main
     class="mx-auto my-8 max-w-3xl flex-col items-center justify-between p-4"
   >
-    <TasksView></TasksView>
+    <CardView></CardView>
   </main>
 </template>

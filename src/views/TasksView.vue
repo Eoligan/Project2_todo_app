@@ -1,5 +1,5 @@
 <script setup>
-import TasksLists from "../components/TasksLists.vue"
+import TasksLists from "@/components/TasksLists.vue"
 import TaskItem from "@/components/TaskItem.vue"
 </script>
 
