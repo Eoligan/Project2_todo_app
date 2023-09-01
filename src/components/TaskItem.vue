@@ -11,6 +11,7 @@ let taskTitle = ref("")
 const isTasksEmpty = computed(() => {
   return taskStore.tasks.length > 0 ? true : false
 })
+
 const isLoading = ref(true)
 
 onMounted(async () => {
@@ -92,6 +93,7 @@ const updateTasksIndex = (evt) => {
         tag: 'ul',
         name: 'listTransition',
         type: 'transition-group',
+        appear: true,
       }"
       animation="200"
       ghost-class="ghost"
@@ -182,7 +184,7 @@ const updateTasksIndex = (evt) => {
       </template>
     </draggable>
   </div>
-  <div v-else class="mt-10 font-sans-serif text-xl">
+  <div v-else id="newTask" class="mt-10 font-sans-serif text-xl">
     Tasks list is empty!
     <span class="font-bold"> Add a new task </span>
     to start
