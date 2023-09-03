@@ -44,7 +44,7 @@ onMounted(async () => {
         class="group mb-4 flex w-full font-sans-serif"
       >
         <RouterLink
-          to="Tasksview"
+          to="{ name: 'tasksview', params: { id: 'card.id' }}"
           class="flex h-32 w-32 items-start justify-center rounded border border-black p-2"
         >
           {{ card.title }}

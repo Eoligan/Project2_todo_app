@@ -3,6 +3,7 @@ import LandingView from "@/views/LandingView.vue"
 import LoginView from "@/views/LoginView.vue"
 import RegisterView from "@/views/RegisterView.vue"
 import DashboardView from "@/views/DashboardView.vue"
+import TasksView from "@/views/TasksView.vue"
 import supabase from "@/lib/supabase"
 
 const router = createRouter({
@@ -33,6 +34,20 @@ const router = createRouter({
       name: "dashboard",
       component: DashboardView,
       meta: { requiresAuth: true },
+      children: [
+        {
+          path: "/dashboard/tasksview/:id",
+          name: "tasksview",
+          component: TasksView,
+          meta: { requiresAuth: true },
+        },
+        // {
+        //   path: "register",
+        //   name: "register",
+        //   component: RegisterView,
+        //   meta: { requiresAuth: true },
+        // },
+      ],
     },
   ],
 })
