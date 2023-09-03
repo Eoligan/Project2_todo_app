@@ -101,6 +101,7 @@ export const useCardStore = defineStore("cardStore", () => {
   //   }
 
   return {
+    cards,
     fetchCards,
     addCard,
     deleteCard,

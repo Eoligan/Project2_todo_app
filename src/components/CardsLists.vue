@@ -1,36 +1,36 @@
 <script setup>
 import { ref } from "vue"
-import { useTaskStore } from "@/stores/task"
+import { useCardStore } from "@/stores/card"
 import { useUserStore } from "@/stores/user"
 import { Icon } from "@iconify/vue"
-// import ErrorComponent from "@/components/ErrorComponent.vue"
+import ErrorComponent from "@/components/ErrorComponent.vue"
 
-const taskStore = useTaskStore()
+const cardStore = useCardStore()
 const userStore = useUserStore()
 let cardTitle = ref("")
 
 const isLengthOk = ref(true)
 
-// const addTask = async () => {
-//   const title = cardTitle.value
-//   cardTitle.value = ""
-//   if (title.length < 3) {
-//     isLengthOk.value = false
+const addCard = async () => {
+  const title = cardTitle.value
+  cardTitle.value = ""
+  if (title.length < 3) {
+    isLengthOk.value = false
 
-//     setTimeout(() => {
-//       isLengthOk.value = true
-//     }, 4000)
-//     return
-//   }
-//   await taskStore.addTask(userStore.user.id, title)
-// }
+    setTimeout(() => {
+      isLengthOk.value = true
+    }, 4000)
+    return
+  }
+  await cardStore.addCard(userStore.user.id, title)
+}
 </script>
 
 <template>
   <h2
     class="relative place-self-start font-averia-bold text-5xl text-secondary after:w-48 sm:text-6xl sm:after:h-6"
   >
-    Task List
+    Cards
   </h2>
   <div
     class="group relative flex w-full items-center rounded ring-2 ring-secondary"
@@ -41,7 +41,7 @@ const isLengthOk = ref(true)
     <input
       id="addTask"
       v-model="cardTitle"
-      placeholder="Write a task to add"
+      placeholder="Add a title for the card"
       type="text"
       class="ml-2 w-full border-none pl-1 font-sans-serif ring-0 focus:border-none focus:outline-none focus:ring-0"
       @keydown.enter="addCard"
