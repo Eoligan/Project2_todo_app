@@ -14,6 +14,19 @@ export const useCardStore = defineStore("cardStore", () => {
     }
   }
 
+  const getCardById = async (card_id) => {
+    const { data, error } = await supabase
+      .from("cards")
+      .select()
+      .eq("id", card_id)
+
+    if (error) console.log("Error: ", error)
+    // else {
+    //   cards.value = data
+    // }
+    return data
+  }
+
   const addCard = async (user_id, title) => {
     const newCard = {
       user_id: user_id,
@@ -103,6 +116,7 @@ export const useCardStore = defineStore("cardStore", () => {
   return {
     cards,
     fetchCards,
+    getCardById,
     addCard,
     deleteCard,
   }

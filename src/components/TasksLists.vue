@@ -1,13 +1,15 @@
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { useTaskStore } from "@/stores/task"
 import { useUserStore } from "@/stores/user"
+import { useCardStore } from "@/stores/card"
 import { Icon } from "@iconify/vue"
 import ErrorComponent from "@/components/ErrorComponent.vue"
 import { useRoute } from "vue-router"
 
 const taskStore = useTaskStore()
 const userStore = useUserStore()
+const cardStore = useCardStore()
 let taskTitle = ref("")
 
 const isLengthOk = ref(true)
@@ -27,13 +29,22 @@ const addTask = async () => {
   }
   await taskStore.addTask(userStore.user.id, title, route.params.id)
 }
+
+const getCardTitle = async () => {
+  const response = await cardStore.getCardById(route.params.id)
+  return response[0].title
+}
+
+onMounted(() => {
+  // getCardTitle(route.params.id)
+})
 </script>
 
 <template>
   <h2
     class="relative place-self-start font-averia-bold text-5xl text-secondary after:w-48 sm:text-6xl sm:after:h-6"
   >
-    {{ route.params.id }}
+    {{ console.log(getCardTitle()) }}
   </h2>
   <div
     class="group relative flex w-full items-center rounded ring-2 ring-secondary"
