@@ -12,6 +12,6 @@ import CardView from "@/views/CardView.vue"
   <main
     class="mx-auto my-8 max-w-3xl flex-col items-center justify-between p-4"
   >
-    <CardView></CardView>
+    <RouterView></RouterView>
   </main>
 </template>

@@ -5,16 +5,18 @@ import supabase from "@/lib/supabase"
 export const useTaskStore = defineStore("taskStore", () => {
   const tasks = ref([])
 
-  const fetchTasks = async () => {
-    const { data, error } = await supabase.from("tasks").select()
-
+  const fetchTasks = async (card_id) => {
+    const { data, error } = await supabase
+      .from("tasks")
+      .select()
+      .eq("card_id", card_id)
     if (error) console.log("Error: ", error)
     else {
       tasks.value = data.sort((a, b) => a.index - b.index)
     }
   }
 
-  const addTask = async (user_id, title) => {
+  const addTask = async (user_id, title, card_id) => {
     let index = 0
     if (tasks.value[tasks.value.length - 1]) {
       index = tasks.value[tasks.value.length - 1].index
@@ -26,6 +28,7 @@ export const useTaskStore = defineStore("taskStore", () => {
       title: title,
       is_completed: false,
       index: index,
+      card_id: card_id,
     }
 
     const { data, error } = await supabase

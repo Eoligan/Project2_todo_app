@@ -5,8 +5,6 @@ import { Icon } from "@iconify/vue"
 import { RouterLink } from "vue-router"
 
 const cardStore = useCardStore()
-const editMode = ref(null)
-let cardTitle = ref("")
 
 const isCardsEmpty = computed(() => {
   return cardStore.cards.length > 0 ? true : false
@@ -17,7 +15,6 @@ const isLoading = ref(true)
 onMounted(async () => {
   try {
     await cardStore.fetchCards()
-    // editMode.value = Array(cardStore.cards.length).fill(false)
     isLoading.value = false
   } catch (error) {
     console.error(error)
@@ -38,16 +35,19 @@ onMounted(async () => {
     v-else-if="isCardsEmpty"
     class="mt-8 flex w-full items-center justify-center"
   >
-    <ul>
+    <ul class="flex gap-4">
       <li
         v-for="card in cardStore.cards"
-        class="group mb-4 flex w-full font-sans-serif"
+        class="0.2s mb-4 w-full rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
       >
         <RouterLink
-          to="{ name: 'tasksview', params: { id: 'card.id' }}"
-          class="flex h-32 w-32 items-start justify-center rounded border border-black p-2"
+          :to="{ name: 'tasksview', params: { id: card.id } }"
+          class="start flex h-52 w-52 cursor-pointer flex-col items-center justify-start"
         >
-          {{ card.title }}
+          <div class="w-full border-b border-stone-300 px-4 py-2 text-center">
+            {{ card.title }}
+          </div>
+          <div class="p-2 text-[0.5rem]">{{ card.inserted_at }}</div>
         </RouterLink>
       </li>
     </ul>

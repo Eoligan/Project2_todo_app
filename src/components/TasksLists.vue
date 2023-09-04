@@ -4,12 +4,15 @@ import { useTaskStore } from "@/stores/task"
 import { useUserStore } from "@/stores/user"
 import { Icon } from "@iconify/vue"
 import ErrorComponent from "@/components/ErrorComponent.vue"
+import { useRoute } from "vue-router"
 
 const taskStore = useTaskStore()
 const userStore = useUserStore()
 let taskTitle = ref("")
 
 const isLengthOk = ref(true)
+
+const route = useRoute()
 
 const addTask = async () => {
   const title = taskTitle.value
@@ -22,7 +25,7 @@ const addTask = async () => {
     }, 4000)
     return
   }
-  await taskStore.addTask(userStore.user.id, title)
+  await taskStore.addTask(userStore.user.id, title, route.params.id)
 }
 </script>
 
@@ -30,7 +33,7 @@ const addTask = async () => {
   <h2
     class="relative place-self-start font-averia-bold text-5xl text-secondary after:w-48 sm:text-6xl sm:after:h-6"
   >
-    Task List
+    {{ route.params.id }}
   </h2>
   <div
     class="group relative flex w-full items-center rounded ring-2 ring-secondary"

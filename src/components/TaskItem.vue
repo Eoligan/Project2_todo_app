@@ -3,6 +3,7 @@ import { useTaskStore } from "@/stores/task"
 import { onMounted, computed, nextTick, ref } from "vue"
 import { Icon } from "@iconify/vue"
 import draggable from "zhyswan-vuedraggable"
+import { useRoute } from "vue-router"
 
 const taskStore = useTaskStore()
 const editMode = ref(null)
@@ -14,9 +15,11 @@ const isTasksEmpty = computed(() => {
 
 const isLoading = ref(true)
 
+const route = useRoute()
+
 onMounted(async () => {
   try {
-    await taskStore.fetchTasks()
+    await taskStore.fetchTasks(route.params.id)
     editMode.value = Array(taskStore.tasks.length).fill(false)
     isLoading.value = false
   } catch (error) {

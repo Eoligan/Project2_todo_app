@@ -3,6 +3,7 @@ import LandingView from "@/views/LandingView.vue"
 import LoginView from "@/views/LoginView.vue"
 import RegisterView from "@/views/RegisterView.vue"
 import DashboardView from "@/views/DashboardView.vue"
+import CardView from "@/views/CardView.vue"
 import TasksView from "@/views/TasksView.vue"
 import supabase from "@/lib/supabase"
 
@@ -13,7 +14,7 @@ const router = createRouter({
       path: "/",
       name: "landing",
       component: LandingView,
-      redirect: "/login",
+      redirect: to  => {return {name:'login'}},
       children: [
         {
           path: "login",
@@ -34,9 +35,18 @@ const router = createRouter({
       name: "dashboard",
       component: DashboardView,
       meta: { requiresAuth: true },
+      redirect: (to) => {
+        return { name: "cardview" }
+      },
       children: [
         {
-          path: "/dashboard/tasksview/:id",
+          path: "/dashboard/cards",
+          name: "cardview",
+          component: CardView,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: "/dashboard/tasks/:id",
           name: "tasksview",
           component: TasksView,
           meta: { requiresAuth: true },
