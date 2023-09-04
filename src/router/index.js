@@ -14,7 +14,9 @@ const router = createRouter({
       path: "/",
       name: "landing",
       component: LandingView,
-      redirect: to  => {return {name:'login'}},
+      redirect: (to) => {
+        return { name: "login" }
+      },
       children: [
         {
           path: "login",

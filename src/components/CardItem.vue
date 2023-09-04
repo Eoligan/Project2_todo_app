@@ -20,6 +20,21 @@ onMounted(async () => {
     console.error(error)
   }
 })
+
+const formatDate = (date) => {
+  const _date = new Date(date)
+  const day = _date.getDate()
+  const month = _date.getMonth() + 1
+  const year = _date.getFullYear()
+  const hour = _date.getHours().toString().padStart(2, "0")
+  const min = _date.getMinutes().toString().padStart(2, "0")
+
+  const formattedDate = `${day}/${month}/${year}`
+  const formattedTime = `${hour}:${min}`
+
+  return { formattedDate, formattedTime }
+}
+// const formatted = formatDate()
 </script>
 
 <template>
@@ -38,6 +53,7 @@ onMounted(async () => {
     <ul class="flex gap-4">
       <li
         v-for="card in cardStore.cards"
+        :key="card.id"
         class="0.2s mb-4 w-full rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
       >
         <RouterLink
@@ -47,7 +63,12 @@ onMounted(async () => {
           <div class="w-full border-b border-stone-300 px-4 py-2 text-center">
             {{ card.title }}
           </div>
-          <div class="p-2 text-[0.5rem]">{{ card.inserted_at }}</div>
+          <div class="p-2 text-xs">
+            <template v-for="formatted in formatDate(card.inserted_at)">
+              {{ formatted.formattedDate }}
+              {{ formatted.formattedTime }}
+            </template>
+          </div>
         </RouterLink>
       </li>
     </ul>
