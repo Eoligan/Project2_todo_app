@@ -4,6 +4,7 @@ import supabase from "@/lib/supabase"
 
 export const useTaskStore = defineStore("taskStore", () => {
   const tasks = ref([])
+  const previewTasks = ref([])
 
   const fetchTasks = async (card_id) => {
     const { data, error } = await supabase
@@ -111,6 +112,20 @@ export const useTaskStore = defineStore("taskStore", () => {
     return true
   }
 
+  const getPreviewTasks = async (card_id) => {
+    const { data, error } = await supabase
+      .from("tasks")
+      .select()
+      .eq("card_id", card_id)
+      .order("index")
+      .limit(3)
+    if (error) console.log("Error: ", error)
+    else {
+      console.log("data[0]:", data[0])
+      previewTasks.value[card_id] = data
+    }
+  }
+
   return {
     tasks,
     fetchTasks,
@@ -119,5 +134,7 @@ export const useTaskStore = defineStore("taskStore", () => {
     editTask,
     completedTask,
     updateTasksIndex,
+    getPreviewTasks,
+    previewTasks,
   }
 })

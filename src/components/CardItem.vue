@@ -1,8 +1,16 @@
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
+import { useTaskStore } from "@/stores/task"
 
 const props = defineProps({
   card: Object,
+})
+const taskStore = useTaskStore()
+
+onMounted(async () => {
+  formatDate()
+  await taskStore.getPreviewTasks(props.card.id)
+  console.log(taskStore.previewTasks[0][0])
 })
 
 const formatted = ref({
@@ -10,8 +18,7 @@ const formatted = ref({
   time: null,
 })
 const formatDate = () => {
-  console.log("entra: ", card.inserted_at)
-  const _date = new Date(card.inserted_at)
+  const _date = new Date(props.card.inserted_at)
   const day = _date.getDate()
   const month = _date.getMonth() + 1
   const year = _date.getFullYear()
@@ -32,5 +39,9 @@ const formatDate = () => {
     {{ formatted.time }}
   </div>
 
-  <div class="grow self-start px-4 pt-5">asdada</div>
+  <ul class="grow self-start px-4 pt-5">
+    <!-- <li v-for="task in taskStore.previewTasks[props.card.id]" :key="task.id">
+      {{ task.title }}
+    </li> -->
+  </ul>
 </template>
