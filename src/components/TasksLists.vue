@@ -43,9 +43,7 @@ onMounted(() => {
 <template>
   <h2
     class="relative place-self-start font-averia-bold text-5xl text-secondary after:w-48 sm:text-6xl sm:after:h-6"
-  >
-    {{ console.log(getCardTitle()) }}
-  </h2>
+  ></h2>
   <div
     class="group relative flex w-full items-center rounded ring-2 ring-secondary"
   >

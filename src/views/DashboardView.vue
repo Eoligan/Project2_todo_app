@@ -1,6 +1,5 @@
 <script setup async>
 import NavBar from "@/components/NavBar.vue"
-import CardView from "@/views/CardView.vue"
 </script>
 
 <template>

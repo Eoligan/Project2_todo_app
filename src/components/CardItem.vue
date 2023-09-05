@@ -1,86 +1,36 @@
 <script setup>
-import { ref, onMounted, computed } from "vue"
-import { useCardStore } from "@/stores/card"
-import { Icon } from "@iconify/vue"
-import { RouterLink } from "vue-router"
+import { ref } from "vue"
 
-const cardStore = useCardStore()
-
-const isCardsEmpty = computed(() => {
-  return cardStore.cards.length > 0 ? true : false
+const props = defineProps({
+  card: Object,
 })
 
-const isLoading = ref(true)
-
-onMounted(async () => {
-  try {
-    await cardStore.fetchCards()
-    isLoading.value = false
-  } catch (error) {
-    console.error(error)
-  }
+const formatted = ref({
+  date: null,
+  time: null,
 })
-
-const formatDate = (date) => {
-  const _date = new Date(date)
+const formatDate = () => {
+  console.log("entra: ", card.inserted_at)
+  const _date = new Date(card.inserted_at)
   const day = _date.getDate()
   const month = _date.getMonth() + 1
   const year = _date.getFullYear()
   const hour = _date.getHours().toString().padStart(2, "0")
   const min = _date.getMinutes().toString().padStart(2, "0")
 
-  const formattedDate = `${day}/${month}/${year}`
-  const formattedTime = `${hour}:${min}`
-
-  return { formattedDate, formattedTime }
+  formatted.value.date = `${day}/${month}/${year}`
+  formatted.value.time = `${hour}:${min}`
 }
-// const formatted = formatDate()
 </script>
 
 <template>
-  <div
-    v-if="isLoading"
-    class="mt-8 flex flex-col items-center justify-center font-sans-serif text-xl"
-  >
-    <Icon class="h-12 w-12 text-brand" icon="eos-icons:loading" />
-    <p class="font-sans-serif font-bold">Loading</p>
+  <div class="w-full border-b border-stone-300 px-3 py-2 text-center text-lg">
+    {{ card.title }}
+  </div>
+  <div class="self-end p-2 text-xs italic text-stone-400">
+    {{ formatted.date }}
+    {{ formatted.time }}
   </div>
 
-  <div
-    v-else-if="isCardsEmpty"
-    class="mt-8 flex w-full items-center justify-center"
-  >
-    <ul class="flex gap-4">
-      <li
-        v-for="card in cardStore.cards"
-        :key="card.id"
-        class="0.2s mb-4 w-full rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
-      >
-        <RouterLink
-          :to="{ name: 'tasksview', params: { id: card.id } }"
-          class="start flex h-52 w-52 cursor-pointer flex-col items-center justify-start"
-        >
-          <div class="w-full border-b border-stone-300 px-4 py-2 text-center">
-            {{ card.title }}
-          </div>
-          <div class="p-2 text-xs">
-            <template v-for="formatted in formatDate(card.inserted_at)">
-              {{ formatted.formattedDate }}
-              {{ formatted.formattedTime }}
-            </template>
-          </div>
-        </RouterLink>
-      </li>
-    </ul>
-  </div>
-  <div v-else id="newCard" class="mt-10 font-sans-serif text-xl">
-    You don't have cards yet!
-    <span class="font-bold"> Add a new card </span>
-    to start.
-    <p class="mt-4">
-      A card is used to group a list of tasks that share a common theme.
-    </p>
-  </div>
+  <div class="grow self-start px-4 pt-5">asdada</div>
 </template>
-
-<style></style>
