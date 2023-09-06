@@ -36,7 +36,7 @@ onMounted(async () => {
     v-else-if="!isCardsEmpty"
     class="mt-8 flex w-full items-center justify-center"
   >
-    <ul class="flex flex-wrap gap-8">
+    <ul class="flex flex-wrap justify-center gap-8">
       <li
         v-for="card in cardStore.cards"
         :key="card.id"

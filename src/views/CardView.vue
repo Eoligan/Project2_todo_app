@@ -4,7 +4,9 @@ import CardsItems from "@/components/CardsItems.vue"
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center gap-6">
+  <div
+    class="mx-4 flex-col items-center justify-center gap-6 lg:mx-0"
+  >
     <CardsHeader />
     <CardsItems />
   </div>
