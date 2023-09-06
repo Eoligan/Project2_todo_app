@@ -9,7 +9,7 @@ import NavBar from "@/components/NavBar.vue"
     <NavBar></NavBar>
   </header>
   <main
-    class="mx-auto my-8 max-w-3xl flex-col items-center justify-between p-4"
+    class="mx-auto mb-8 max-w-3xl flex-col items-center justify-between mt-16"
   >
     <RouterView></RouterView>
   </main>

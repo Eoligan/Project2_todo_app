@@ -37,8 +37,7 @@ const formatDate = () => {
     {{ formatted.date }}
     {{ formatted.time }}
   </div>
-
-  <ul class="mt-4 grow space-y-2 self-start pl-3 pr-2 text-[0.925rem]">
+  <ul class="mt-2 grow space-y-2 self-start pl-3 pr-2 text-[0.925rem]">
     <li
       v-for="task in taskStore.previewTasks[props.card.id]"
       :key="task.id"
@@ -47,4 +46,9 @@ const formatDate = () => {
       {{ task.title }}
     </li>
   </ul>
+  <button
+    class="m-0.5 self-end rounded-full border border-red-500 px-1.5 py-0.5 text-sm text-red-500 transition-all duration-150 ease-in hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white lg:border-transparent lg:text-transparent lg:hover:!text-white lg:group-hover:border-red-500 lg:group-hover:text-red-500"
+  >
+    Delete
+  </button>
 </template>

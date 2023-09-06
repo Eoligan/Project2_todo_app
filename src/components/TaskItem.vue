@@ -10,7 +10,7 @@ const editMode = ref(null)
 let taskTitle = ref("")
 
 const isTasksEmpty = computed(() => {
-  return taskStore.tasks.length > 0 ? true : false
+  return taskStore.tasks.length > 0 ? false : true
 })
 
 const isLoading = ref(true)
@@ -79,14 +79,14 @@ const updateTasksIndex = (evt) => {
 <template>
   <div
     v-if="isLoading"
-    class="mt-8 flex flex-col items-center justify-center font-sans-serif text-xl"
+    class="flex flex-col items-center justify-center font-sans-serif text-xl"
   >
     <Icon class="h-12 w-12 text-brand" icon="eos-icons:loading" />
     <p class="font-sans-serif font-bold">Loading</p>
   </div>
   <div
-    v-else-if="isTasksEmpty"
-    class="mt-8 flex w-full items-center justify-center"
+    v-else-if="!isTasksEmpty"
+    class="flex w-full items-center justify-center"
   >
     <draggable
       class="relative w-full"
@@ -156,7 +156,7 @@ const updateTasksIndex = (evt) => {
               v-else
             >
               <input
-                class="p-3none flex-1 rounded border-none p-3 focus:ring-0"
+                class="flex-1 rounded border-none p-3 focus:ring-0"
                 id="editInput"
                 v-model="taskTitle"
                 type="text"
@@ -187,7 +187,7 @@ const updateTasksIndex = (evt) => {
       </template>
     </draggable>
   </div>
-  <div v-else id="newTask" class="mt-10 font-sans-serif text-xl">
+  <div v-else id="newTask" class="mt-4 font-sans-serif text-xl">
     Tasks list is empty!
     <span class="font-bold"> Add a new task </span>
     to start

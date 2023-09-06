@@ -40,18 +40,18 @@ onMounted(async () => {
       <li
         v-for="card in cardStore.cards"
         :key="card.id"
-        class="0.2s h-52 w-52  rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
+        class="0.2s h-52 w-52 rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
       >
         <RouterLink
           :to="{ name: 'tasksview', params: { id: card.id } }"
-          class="start flex  cursor-pointer flex-col items-center justify-start"
+          class="start group h-52 flex cursor-pointer flex-col items-center justify-start"
         >
           <CardItem :card="card"></CardItem>
         </RouterLink>
       </li>
     </ul>
   </div>
-  <div v-else id="newCard" class="mt-10 font-sans-serif text-xl">
+  <div v-else class="mt-10 font-sans-serif text-xl">
     You don't have cards yet!
     <span class="font-bold"> Add a new card </span>
     to start.

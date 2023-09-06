@@ -1,13 +1,13 @@
 <script setup>
-import TasksLists from "@/components/TasksLists.vue"
+import TasksHeader from "@/components/TasksHeader.vue"
 import TaskItem from "@/components/TaskItem.vue"
 </script>
 
 <template>
-  <main class="flex flex-col items-center justify-center gap-6">
-    <TasksLists></TasksLists>
-    <TaskItem></TaskItem>
-  </main>
+  <div class="flex flex-col items-center justify-center gap-8">
+    <TasksHeader />
+    <TaskItem />
+  </div>
 </template>
 
 <style></style>
