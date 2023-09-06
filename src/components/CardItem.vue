@@ -10,7 +10,6 @@ const taskStore = useTaskStore()
 onMounted(async () => {
   formatDate()
   await taskStore.getPreviewTasks(props.card.id)
-  console.log(taskStore.previewTasks[0][0])
 })
 
 const formatted = ref({
@@ -39,9 +38,13 @@ const formatDate = () => {
     {{ formatted.time }}
   </div>
 
-  <ul class="grow self-start px-4 pt-5">
-    <!-- <li v-for="task in taskStore.previewTasks[props.card.id]" :key="task.id">
+  <ul class="mt-4 grow space-y-2 self-start pl-3 pr-2 text-[0.925rem]">
+    <li
+      v-for="task in taskStore.previewTasks[props.card.id]"
+      :key="task.id"
+      class="line-clamp-1 before:pr-1 before:content-['\2022']"
+    >
       {{ task.title }}
-    </li> -->
+    </li>
   </ul>
 </template>

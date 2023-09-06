@@ -121,7 +121,6 @@ export const useTaskStore = defineStore("taskStore", () => {
       .limit(3)
     if (error) console.log("Error: ", error)
     else {
-      console.log("data[0]:", data[0])
       previewTasks.value[card_id] = data
     }
   }

@@ -8,7 +8,7 @@ import CardItem from "@/components/CardItem.vue"
 const cardStore = useCardStore()
 
 const isCardsEmpty = computed(() => {
-  return cardStore.cards.length > 0 ? true : false
+  return cardStore.cards.length > 0 ? false : true
 })
 
 const isLoading = ref(true)
@@ -33,18 +33,18 @@ onMounted(async () => {
   </div>
 
   <div
-    v-else-if="isCardsEmpty"
+    v-else-if="!isCardsEmpty"
     class="mt-8 flex w-full items-center justify-center"
   >
-    <ul class="flex gap-4">
+    <ul class="flex flex-wrap gap-8">
       <li
         v-for="card in cardStore.cards"
         :key="card.id"
-        class="0.2s mb-4 w-full rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
+        class="0.2s h-52 w-52  rounded font-sans-serif shadow shadow-stone-400 transition-all ease-in hover:-translate-y-1 hover:shadow-md hover:shadow-brand/70"
       >
         <RouterLink
           :to="{ name: 'tasksview', params: { id: card.id } }"
-          class="start flex h-52 w-52 cursor-pointer flex-col items-center justify-start"
+          class="start flex  cursor-pointer flex-col items-center justify-start"
         >
           <CardItem :card="card"></CardItem>
         </RouterLink>

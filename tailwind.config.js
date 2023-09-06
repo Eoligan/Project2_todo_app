@@ -10,7 +10,7 @@ module.exports = {
       "averia-light-italic": "averia_serif_libreLtIt",
       "averia-bold": "averia_serif_librebold",
       "sans-serif": "sans-serif",
-     },
+    },
     extend: {
       colors: {
         brand: {
@@ -34,5 +34,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/line-clamp")],
 }
