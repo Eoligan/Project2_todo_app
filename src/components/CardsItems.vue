@@ -44,7 +44,7 @@ onMounted(async () => {
       >
         <RouterLink
           :to="{ name: 'tasksview', params: { id: card.id } }"
-          class="start group h-52 flex cursor-pointer flex-col items-center justify-start"
+          class="start group flex h-52 cursor-pointer flex-col items-center justify-start"
         >
           <CardItem :card="card"></CardItem>
         </RouterLink>

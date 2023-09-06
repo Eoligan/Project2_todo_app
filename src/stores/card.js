@@ -49,13 +49,13 @@ export const useCardStore = defineStore("cardStore", () => {
 
   const deleteCard = async (id) => {
     const removedIndex = cards.value.findIndex((card) => card.id === id)
-    const removedTask = tasks.value.splice(removedIndex, 1)[0]
+    const removedCard = cards.value.splice(removedIndex, 1)[0]
 
     const { error } = await supabase.from("cards").delete().eq("id", id)
 
     if (error) {
       console.log("Error: ", error)
-      cards.value.splice(removedIndex, 0, removedTask)
+      cards.value.splice(removedIndex, 0, removedCard)
     }
   }
 

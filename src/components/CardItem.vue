@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import { useTaskStore } from "@/stores/task"
+import { useCardStore } from "../stores/card"
 
 const props = defineProps({
   card: Object,
 })
+const cardStore = useCardStore()
 const taskStore = useTaskStore()
 
 onMounted(async () => {
@@ -47,6 +49,7 @@ const formatDate = () => {
     </li>
   </ul>
   <button
+    @click.prevent="cardStore.deleteCard(card.id)"
     class="m-0.5 self-end rounded-full border border-red-500 px-1.5 py-0.5 text-sm text-red-500 transition-all duration-150 ease-in hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white lg:border-transparent lg:text-transparent lg:hover:!text-white lg:group-hover:border-red-500 lg:group-hover:text-red-500"
   >
     Delete
