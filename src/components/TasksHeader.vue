@@ -49,7 +49,7 @@ onMounted(async () => {
       </RouterLink>
     </div>
     <h2
-      class="relative w-full flex-1 place-self-start font-sans-serif text-4xl text-black"
+      class="relative w-full flex-1 place-self-start font-sans-serif text-3xl text-black md:text-4xl"
     >
       {{ card_title }}
     </h2>
@@ -62,7 +62,7 @@ onMounted(async () => {
         v-model="taskTitle"
         placeholder="Write a task to add"
         type="text"
-        class="ml-2 h-8 w-full border-b-2 border-black border-x-transparent border-t-transparent pl-2 font-sans-serif focus:rounded focus:text-black"
+        class="ml-2 h-8 w-full border-b-2 border-black border-x-transparent border-t-transparent pl-2 font-sans-serif focus:rounded focus:text-black focus:outline-none focus:border-transparent focus:ring-brand focus:ring-2"
         @keydown.enter="addTask"
       />
       <button @click="addTask" class="ml-2 min-w-fit">
@@ -73,7 +73,7 @@ onMounted(async () => {
           class="text-black transition-all duration-150 ease-in group-hover:text-brand"
         /> -->
         <p
-          class="rounded-full border border-black p-1.5 text-sm transition-all duration-150 ease-in hover:border-brand hover:text-brand"
+          class="rounded-full border border-black px-1 py-0.5 text-sm transition-all duration-150 ease-in hover:border-brand hover:text-brand md:px-1.5 md:py-1"
         >
           Add task
         </p>
