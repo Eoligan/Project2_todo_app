@@ -44,7 +44,7 @@ const formatDate = () => {
     <li
       v-for="task in taskStore.previewTasks[props.card.id]"
       :key="task.id"
-      class="line-clamp-1 before:pr-1 before:content-['\2022']"
+      class="line-clamp-1 before:pr-1 before:content-['\2022']" :class="{'line-through' : task.is_completed}"
     >
       {{ task.title }}
     </li>
