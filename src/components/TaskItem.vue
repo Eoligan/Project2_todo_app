@@ -98,7 +98,8 @@ const updateTasksIndex = (evt) => {
         type: 'transition-group',
         appear: true,
       }"
-      :options="{ delay: 400 }"
+      :delay="200"
+      :delay-on-touch-only="true"
       animation="200"
       ghost-class="ghost"
       tag="transition-group"
