@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue"
 import { useTaskStore } from "@/stores/task"
 import { useCardStore } from "../stores/card"
+import { Icon } from "@iconify/vue"
 
 const props = defineProps({
   card: Object,
@@ -50,8 +51,11 @@ const formatDate = () => {
   </ul>
   <button
     @click.prevent="cardStore.deleteCard(card.id)"
-    class="m-0.5 self-end rounded-full border border-red-500 px-1.5 py-0.5 text-sm text-red-500 transition-all duration-150 ease-in hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white lg:border-transparent lg:text-transparent lg:hover:!text-white lg:group-hover:border-red-500 lg:group-hover:text-red-500"
+    class="self-end rounded-full"
   >
-    Delete
+    <Icon
+      class="z-10 m-1 h-6 w-6 text-red-700 hover:!text-red-600 group-hover:text-red-700 lg:text-transparent lg:group-hover:text-red-700"
+      icon="material-symbols:delete"
+    />
   </button>
 </template>
