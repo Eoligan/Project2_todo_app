@@ -24,11 +24,11 @@ const formatDate = () => {
   const day = _date.getDate()
   const month = _date.getMonth() + 1
   const year = _date.getFullYear()
-  const hour = _date.getHours().toString().padStart(2, "0")
-  const min = _date.getMinutes().toString().padStart(2, "0")
+  // const hour = _date.getHours().toString().padStart(2, "0")
+  // const min = _date.getMinutes().toString().padStart(2, "0")
 
   formatted.value.date = `${day}/${month}/${year}`
-  formatted.value.time = `${hour}:${min}`
+  // formatted.value.time = `${hour}:${min}`
 }
 </script>
 
@@ -38,7 +38,7 @@ const formatDate = () => {
   </div>
   <div class="self-end p-2 text-xs italic text-stone-400">
     {{ formatted.date }}
-    {{ formatted.time }}
+    <!-- {{ formatted.time }} -->
   </div>
   <ul class="mt-2 grow space-y-2 self-start pl-3 pr-2 text-[0.925rem]">
     <li
