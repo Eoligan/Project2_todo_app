@@ -1,5 +1,7 @@
 # Project2_todo_app
 
+Deployed site: https://a-lot-to-do.netlify.app/
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
